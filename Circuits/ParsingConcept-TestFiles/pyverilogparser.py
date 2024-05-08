@@ -1,7 +1,7 @@
 import pyverilog.vparser.parser as prs
 
 
-with open('c3540.v','r') as f:
+with open('vga_ctrl.v','r') as f:
     vc = f.read() 
 
 
@@ -10,8 +10,10 @@ with open('c3540.v','r') as f:
 
 
 a , b = prs.parse(vc)
+# a.show()
 
-small = a.show()
+small = a.children()
+print(a.show())
 print("--------------")
 
 

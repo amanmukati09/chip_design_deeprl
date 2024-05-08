@@ -1,0 +1,45 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_0000029eff1eee20 .scope module, "c17" "c17" 2 8;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "N1";
+    .port_info 1 /INPUT 1 "N2";
+    .port_info 2 /INPUT 1 "N3";
+    .port_info 3 /INPUT 1 "N6";
+    .port_info 4 /INPUT 1 "N7";
+    .port_info 5 /OUTPUT 1 "N22";
+    .port_info 6 /OUTPUT 1 "N23";
+o0000029eff236fd8 .functor BUFZ 1, C4<z>; HiZ drive
+o0000029eff237158 .functor BUFZ 1, C4<z>; HiZ drive
+L_0000029eff1eb980 .functor NAND 1, o0000029eff236fd8, o0000029eff237158, C4<1>, C4<1>;
+o0000029eff237188 .functor BUFZ 1, C4<z>; HiZ drive
+L_0000029eff1eb9f0 .functor NAND 1, o0000029eff237158, o0000029eff237188, C4<1>, C4<1>;
+o0000029eff2370c8 .functor BUFZ 1, C4<z>; HiZ drive
+L_0000029eff1eba60 .functor NAND 1, o0000029eff2370c8, L_0000029eff1eb9f0, C4<1>, C4<1>;
+o0000029eff2371b8 .functor BUFZ 1, C4<z>; HiZ drive
+L_0000029eff1ebad0 .functor NAND 1, L_0000029eff1eb9f0, o0000029eff2371b8, C4<1>, C4<1>;
+L_0000029eff1ebb40 .functor NAND 1, L_0000029eff1eb980, L_0000029eff1eba60, C4<1>, C4<1>;
+L_0000029eff1ebbb0 .functor NAND 1, L_0000029eff1eba60, L_0000029eff1ebad0, C4<1>, C4<1>;
+v0000029eff202d60_0 .net "N1", 0 0, o0000029eff236fd8;  0 drivers
+v0000029eff202e00_0 .net "N10", 0 0, L_0000029eff1eb980;  1 drivers
+v0000029eff202ea0_0 .net "N11", 0 0, L_0000029eff1eb9f0;  1 drivers
+v0000029eff202f40_0 .net "N16", 0 0, L_0000029eff1eba60;  1 drivers
+v0000029eff202fe0_0 .net "N19", 0 0, L_0000029eff1ebad0;  1 drivers
+v0000029eff203080_0 .net "N2", 0 0, o0000029eff2370c8;  0 drivers
+v0000029eff1eb5d0_0 .net "N22", 0 0, L_0000029eff1ebb40;  1 drivers
+v0000029eff1eb670_0 .net "N23", 0 0, L_0000029eff1ebbb0;  1 drivers
+v0000029eff1eb710_0 .net "N3", 0 0, o0000029eff237158;  0 drivers
+v0000029eff1eb840_0 .net "N6", 0 0, o0000029eff237188;  0 drivers
+v0000029eff1eb8e0_0 .net "N7", 0 0, o0000029eff2371b8;  0 drivers
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "c17.v";
