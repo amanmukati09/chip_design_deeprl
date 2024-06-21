@@ -1394,6 +1394,9 @@ module s13207 (clock, g43, g49, g633, g634, g635, g645, g647,
 endmodule
 
 
+
+
+
 module fflopd(CK, D, Q);
   input CK, D;
   output Q;
