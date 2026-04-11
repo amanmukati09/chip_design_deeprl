@@ -126,16 +126,51 @@ def mutate_swap_inputs(gates):
     return new_gates
 
 
-def apply_random_mutation(gates):
+def mutate_add_not(gates, inputs):
+    """
+    Inserts a NOT gate on a random internal signal.
+    Structural mutation — changes circuit topology.
+    """
+    new_gates     = copy.deepcopy(gates)
+    all_signals   = list(new_gates.keys()) + list(inputs)
+
+    if not all_signals:
+        return new_gates
+
+    target_signal = random.choice(all_signals)
+    new_signal    = f"inv_{target_signal}"
+
+    new_gates[new_signal] = ('NOT', [target_signal])
+
+    candidates = [
+        k for k, (gt, gi) in new_gates.items()
+        if target_signal in gi and k != new_signal
+    ]
+
+    if candidates:
+        rewire_target    = random.choice(candidates)
+        gt, gi           = new_gates[rewire_target]
+        gi               = [new_signal if x == target_signal
+                             else x for x in gi]
+        new_gates[rewire_target] = (gt, gi)
+
+    return new_gates
+
+
+def apply_random_mutation(gates, inputs=None):
     """
     Picks one of the mutation strategies at random.
-    Called by the SA optimizer each iteration.
+    Called by the SA and GA optimizers each iteration.
     """
+    if inputs is None:
+        inputs = []
+
     mutations = [
-        mutate_swap_gate,
-        mutate_swap_gate,      # weighted double — most useful
-        mutate_remove_buffer,
-        mutate_swap_inputs,
+        lambda g: mutate_swap_gate(g),
+        lambda g: mutate_swap_gate(g),
+        lambda g: mutate_remove_buffer(g),
+        lambda g: mutate_swap_inputs(g),
+        lambda g: mutate_add_not(g, inputs),
     ]
     mutation_fn = random.choice(mutations)
     return mutation_fn(gates)
