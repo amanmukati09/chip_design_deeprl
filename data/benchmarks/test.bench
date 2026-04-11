@@ -1,0 +1,9 @@
+# Simple test circuit
+INPUT(a)
+INPUT(b)
+INPUT(c)
+OUTPUT(z)
+
+n1 = AND(a, b)
+n2 = OR(n1, c)
+z  = NOT(n2)
