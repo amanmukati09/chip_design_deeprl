@@ -1,12 +1,6 @@
 # ml/data_collector.py
 # Collects circuit + cost pairs during optimization runs
 # This becomes our GNN training data
-#
-# Every time optimizer evaluates a circuit variation,
-# we save:
-#   - graph structure (nodes + edges)
-#   - node features (gate type, fan-in, fan-out)
-#   - PAC cost (label for training)
 
 import os
 import json
@@ -22,7 +16,6 @@ from core.circuit             import Circuit
 
 # ─────────────────────────────────────────────────────────────
 # GATE TYPE ENCODING
-# Convert gate type string to number for ML
 # ─────────────────────────────────────────────────────────────
 GATE_TYPE_MAP = {
     'INPUT' : 0,
@@ -41,22 +34,12 @@ GATE_TYPE_MAP = {
 
 
 def gates_to_graph_data(gates, inputs, outputs):
-    """
-    Converts gates dict into a format suitable for GNN training.
-
-    Returns:
-        node_features : list of [gate_type_id, fan_in, fan_out]
-        edge_index    : list of [src, dst] pairs
-        node_names    : list of signal names (for reference)
-    """
-    # Build graph to get structural info
+    """Converts gates dict into GNN training format."""
     G = build_graph(inputs, outputs, gates)
 
-    # Create node list (consistent ordering)
     node_names = list(G.nodes())
     node_idx   = {name: i for i, name in enumerate(node_names)}
 
-    # Build node features
     node_features = []
     for node in node_names:
         data    = G.nodes[node]
@@ -72,35 +55,25 @@ def gates_to_graph_data(gates, inputs, outputs):
 
         fan_in  = G.in_degree(node)
         fan_out = G.out_degree(node)
-
         node_features.append([type_id, fan_in, fan_out])
 
-    # Build edge index
-    edge_index = []
-    for src, dst in G.edges():
-        src_idx = node_idx[src]
-        dst_idx = node_idx[dst]
-        edge_index.append([src_idx, dst_idx])
+    edge_index = [
+        [node_idx[src], node_idx[dst]]
+        for src, dst in G.edges()
+    ]
 
     return node_features, edge_index, node_names
 
 
 def collect_sample(gates, inputs, outputs):
-    """
-    Creates one training sample from a circuit variation.
-
-    Returns:
-        sample : dict with graph data + cost label
-    """
-    # Compute cost (ground truth label)
+    """Creates one training sample from a circuit variation."""
     cost_dict = compute_pac_cost(gates, inputs)
 
-    # Convert to graph data
     node_features, edge_index, node_names = gates_to_graph_data(
         gates, inputs, outputs
     )
 
-    sample = {
+    return {
         'node_features' : node_features,
         'edge_index'    : edge_index,
         'node_count'    : len(node_names),
@@ -111,48 +84,30 @@ def collect_sample(gates, inputs, outputs):
         'wirelength'    : cost_dict['wirelength'],
     }
 
-    return sample
-
 
 class DataCollector:
-    """
-    Wraps optimization runs and collects training data.
-
-    Usage:
-        collector = DataCollector()
-        collector.record(gates, inputs, outputs)
-        collector.save("ml/data/s1196_samples.json")
-    """
+    """Wraps optimization runs and collects training data."""
 
     def __init__(self, max_samples=5000):
         self.samples     = []
         self.max_samples = max_samples
 
     def record(self, gates, inputs, outputs):
-        """Records one circuit variation as a training sample."""
         if len(self.samples) >= self.max_samples:
-            return  # don't exceed memory limit
-
+            return
         sample = collect_sample(gates, inputs, outputs)
         self.samples.append(sample)
 
     def save(self, filepath):
-        """Saves all collected samples to JSON file."""
         os.makedirs(os.path.dirname(filepath), exist_ok=True)
-
         with open(filepath, 'w') as f:
             json.dump(self.samples, f)
-
-        print(f"[DataCollector] Saved {len(self.samples)} "
-              f"samples to {filepath}")
+        print(f"[DataCollector] Saved {len(self.samples)} samples to {filepath}")
 
     def load(self, filepath):
-        """Loads samples from JSON file."""
         with open(filepath, 'r') as f:
             self.samples = json.load(f)
-
-        print(f"[DataCollector] Loaded {len(self.samples)} "
-              f"samples from {filepath}")
+        print(f"[DataCollector] Loaded {len(self.samples)} samples from {filepath}")
 
     @property
     def size(self):
@@ -164,54 +119,120 @@ def generate_training_data(circuit,
                             save_path=None,
                             verbose=True):
     """
-    Generates training data by running hybrid optimizer
-    and collecting all circuit variations evaluated.
+    Generates training data covering the FULL cost range.
 
-    This is how we solve the 'no training data' problem.
-    Every mutation the optimizer tries becomes a data point.
+    Strategy:
+      Tier 1 (20%) — random mutations from original
+                     covers cost range ~840-856
+      Tier 2 (50%) — samples collected DURING SA runs
+                     covers cost range ~700-840 (the range GNN needs)
+      Tier 3 (30%) — mutations from SA-optimized circuits
+                     covers cost range ~690-750
 
-    Args:
-        circuit     : Circuit object
-        n_variations: how many variations to generate
-        save_path   : where to save (optional)
-        verbose     : print progress
-
-    Returns:
-        collector   : DataCollector with all samples
+    This ensures the GNN learns to predict cost at every
+    level of optimization, not just near the starting point.
     """
-    from optimizer.simulated_annealing import apply_random_mutation
+    from optimizer.simulated_annealing import apply_random_mutation, simulated_annealing
 
     collector = DataCollector(max_samples=n_variations)
 
+    n_tier1 = int(n_variations * 0.20)   # ~100 samples near original
+    n_sa    = 3                           # number of SA runs for tier 2+3
+    n_tier3 = int(n_variations * 0.30)   # ~150 mutations from SA result
+
+    # ── Tier 1: mutations near original ──────────────────────
     if verbose:
-        print(f"\n[DataCollector] Generating {n_variations} "
-              f"training samples from {circuit.name}...")
+        print(f"\n[DataCollector] Tier 1: {n_tier1} samples near original...")
 
-    # Always record original circuit first
     collector.record(circuit.gates, circuit.inputs, circuit.outputs)
-
     current_gates = copy.deepcopy(circuit.gates)
 
-    for i in range(n_variations - 1):
-        # Apply random mutation
-        new_gates = apply_random_mutation(
-            current_gates, inputs=circuit.inputs
+    for i in range(n_tier1 - 1):
+        new_gates = apply_random_mutation(current_gates, inputs=circuit.inputs)
+        collector.record(new_gates, circuit.inputs, circuit.outputs)
+        # Walk away from original — don't reset
+        current_gates = new_gates
+        if verbose and i % 25 == 0:
+            print(f"  Tier 1: {i+1}/{n_tier1}")
+
+    # ── Tier 2+3: run SA, collect samples along the way ──────
+    if verbose:
+        print(f"\n[DataCollector] Tier 2: collecting samples during SA runs...")
+
+    # Monkey-patch: wrap SA to intercept every accepted move
+    import math, random as rnd
+
+    def sa_with_collection(start_gates, collector, circuit,
+                           initial_temp=50.0, cooling=0.95,
+                           min_temp=0.1, iters=10):
+        """Runs SA and records every accepted circuit."""
+        GATE_SWAP_MAP = {
+            'XOR': ['XNOR', 'NAND'], 'XNOR': ['XOR', 'NAND'],
+            'AND': ['NAND', 'OR'],   'OR': ['NOR', 'AND'],
+            'NAND': ['AND', 'NOR'],  'NOR': ['OR', 'NAND'],
+            'NOT': ['BUFF'],         'BUFF': ['NOT'],
+            'DFF': ['DFF'],
+        }
+
+        def mutate(gates):
+            g = copy.deepcopy(gates)
+            target = rnd.choice(list(g.keys()))
+            gtype, ginputs = g[target]
+            opts = GATE_SWAP_MAP.get(gtype, [])
+            if opts:
+                g[target] = (rnd.choice(opts), ginputs)
+            return g
+
+        current = copy.deepcopy(start_gates)
+        current_cost = compute_pac_cost(current, circuit.inputs)['total_cost']
+        best = copy.deepcopy(current)
+        best_cost = current_cost
+        temp = initial_temp
+
+        while temp > min_temp:
+            for _ in range(iters):
+                new = mutate(current)
+                new_cost = compute_pac_cost(new, circuit.inputs)['total_cost']
+                delta = new_cost - current_cost
+                if delta < 0 or rnd.random() < math.exp(-delta / temp):
+                    current = new
+                    current_cost = new_cost
+                    # Record every accepted move — this is our tier 2 data
+                    collector.record(current, circuit.inputs, circuit.outputs)
+                    if current_cost < best_cost:
+                        best_cost = current_cost
+                        best = copy.deepcopy(current)
+            temp *= cooling
+
+        return best, best_cost
+
+    for run in range(n_sa):
+        if verbose:
+            print(f"  SA run {run+1}/{n_sa}  "
+                  f"(collected so far: {collector.size})")
+        best_gates, best_cost = sa_with_collection(
+            circuit.gates, collector, circuit
         )
 
-        # Record this variation
+    # ── Tier 3: mutations from SA-optimized circuits ──────────
+    if verbose:
+        print(f"\n[DataCollector] Tier 3: {n_tier3} mutations from SA result...")
+
+    current_gates = copy.deepcopy(best_gates)
+    remaining     = n_variations - collector.size
+
+    for i in range(remaining):
+        new_gates = apply_random_mutation(current_gates, inputs=circuit.inputs)
         collector.record(new_gates, circuit.inputs, circuit.outputs)
-
-        # Occasionally reset to original to explore diverse space
-        if i % 50 == 0:
-            current_gates = copy.deepcopy(circuit.gates)
-        else:
-            current_gates = new_gates
-
-        if verbose and i % 100 == 0:
-            print(f"  Generated {i+1}/{n_variations} samples...")
+        current_gates = new_gates
+        if verbose and i % 50 == 0:
+            print(f"  Tier 3: {i+1}/{remaining}")
 
     if verbose:
-        print(f"  Done. Total samples: {collector.size}")
+        costs = [s['cost'] for s in collector.samples]
+        print(f"\n  Done. Total samples : {collector.size}")
+        print(f"  Cost range          : {round(min(costs),2)} – {round(max(costs),2)}")
+        print(f"  Mean cost           : {round(sum(costs)/len(costs),2)}")
 
     if save_path:
         collector.save(save_path)
@@ -221,37 +242,23 @@ def generate_training_data(circuit,
 
 # ── Quick test ───────────────────────────────────────
 if __name__ == "__main__":
-    import sys, os
-    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-
     from core.pipeline import load_circuit
 
-    # Generate training data from s1196
     circuit, _ = load_circuit("data/benchmarks/s1196.bench")
 
     collector = generate_training_data(
         circuit,
-        n_variations = 500,
-        save_path    = "ml/data/s1196_samples.json",
+        n_variations = 2000,
+        save_path    = "ml/data/s1196_samples_v2.json",
         verbose      = True
     )
 
-    print(f"\nSample 0 (original circuit):")
+    print(f"\nSample 0 (original):")
     s = collector.samples[0]
-    print(f"  Nodes     : {s['node_count']}")
-    print(f"  Edges     : {s['edge_count']}")
-    print(f"  Cost      : {s['cost']}")
-    print(f"  Power     : {s['power']}")
-    print(f"  Area      : {s['area']}")
+    print(f"  Cost : {s['cost']}")
 
-    print(f"\nSample 1 (first mutation):")
-    s = collector.samples[1]
-    print(f"  Nodes     : {s['node_count']}")
-    print(f"  Edges     : {s['edge_count']}")
-    print(f"  Cost      : {s['cost']}")
-
-    print(f"\nData range:")
     costs = [s['cost'] for s in collector.samples]
-    print(f"  Min cost  : {round(min(costs), 4)}")
-    print(f"  Max cost  : {round(max(costs), 4)}")
-    print(f"  Avg cost  : {round(sum(costs)/len(costs), 4)}")
+    print(f"\nFinal cost range:")
+    print(f"  Min : {round(min(costs), 2)}")
+    print(f"  Max : {round(max(costs), 2)}")
+    print(f"  Mean: {round(sum(costs)/len(costs), 2)}")

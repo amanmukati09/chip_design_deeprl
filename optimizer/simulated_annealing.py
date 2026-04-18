@@ -287,7 +287,7 @@ if __name__ == "__main__":
 
     # Test on c17
     print("Loading circuit...")
-    circuit, _ = load_circuit("data/benchmarks/c17.bench")
+    circuit, _ = load_circuit("data/benchmarks/s1196.bench")
 
     print(f"Original cost: {circuit.cost}")
 
