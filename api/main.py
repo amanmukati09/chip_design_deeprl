@@ -34,6 +34,8 @@ from optimizer.simulated_annealing import simulated_annealing
 from optimizer.genetic_algorithm   import genetic_algorithm
 from optimizer.hybrid_optimizer    import hybrid_optimize
 from optimizer.gnn_optimizer       import gnn_simulated_annealing
+from heuristics.manager import optimize as manager_optimize, scale_iterations
+
 
 
 # ─────────────────────────────────────────────────────────────
@@ -79,45 +81,8 @@ def select_optimizer(gate_count: int, override: Optional[str] = None) -> str:
 
 
 def run_optimizer(circuit, optimizer: str):
-    """Runs the selected optimizer and returns (cost, report, time)."""
-
-    SA_CFG = dict(
-        initial_temp=50.0, cooling_rate=0.95,
-        min_temp=0.1, iterations_per_temp=10, verbose=False
-    )
-    GA_CFG = dict(
-        population_size=20, generations=50,
-        survival_rate=0.3, mutation_rate=0.7, verbose=False
-    )
-    HYBRID_CFG = dict(
-        ga_population=20, ga_generations=50,
-        ga_survival=0.3, ga_mutation=0.7,
-        sa_initial_temp=50.0, sa_cooling=0.95,
-        sa_min_temp=0.1, sa_iterations=10, verbose=False
-    )
-    GNN_CFG = dict(
-        initial_temp=50.0, cooling_rate=0.95,
-        min_temp=0.1, iterations_per_temp=10,
-        verify_every=20, verbose=False
-    )
-
-    t0 = time.perf_counter()
-
-    if optimizer == "sa":
-        gates, cost, report = simulated_annealing(circuit, **SA_CFG)
-    elif optimizer == "ga":
-        gates, cost, report = genetic_algorithm(circuit, **GA_CFG)
-    elif optimizer == "hybrid":
-        gates, cost, report = hybrid_optimize(circuit, **HYBRID_CFG)
-    elif optimizer == "gnn_sa":
-        gates, cost, report = gnn_simulated_annealing(
-            circuit, predictor, **GNN_CFG
-        )
-    else:
-        raise ValueError(f"Unknown optimizer: {optimizer}")
-
-    elapsed = round(time.perf_counter() - t0, 3)
-    return cost, report, elapsed
+    result = manager_optimize(circuit, force_optimizer=optimizer, verbose=False)
+    return result["optimized_cost"], result["detail"], result["time_seconds"]
 
 
 # ─────────────────────────────────────────────────────────────
