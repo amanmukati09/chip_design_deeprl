@@ -1,0 +1,12 @@
+# ----------------------------------------
+# Optimized Circuit: test_circuit
+# Original Cost: 15.0
+# ----------------------------------------
+
+INPUT(in1)
+INPUT(in2)
+INPUT(in3)
+
+OUTPUT(out1)
+
+out1 = NOT(in1)
