@@ -34,7 +34,7 @@ import time
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from core.pipeline                 import load_circuit
+from pipeline_v1                 import load_circuit
 from optimizer.simulated_annealing import simulated_annealing
 from optimizer.genetic_algorithm   import genetic_algorithm
 from optimizer.hybrid_optimizer    import hybrid_optimize

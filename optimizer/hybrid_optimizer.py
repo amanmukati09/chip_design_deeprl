@@ -164,7 +164,7 @@ if __name__ == "__main__":
     import sys, os
     sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-    from core.pipeline import load_circuit
+    from pipeline_v1 import load_circuit
 
     # Test on s1196 — same circuit GA tested on
     circuit, _ = load_circuit("data/benchmarks/s1196.bench")

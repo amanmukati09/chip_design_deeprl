@@ -309,7 +309,7 @@ def gnn_simulated_annealing(
 # ─────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    from core.pipeline import load_circuit
+    from pipeline_v1 import load_circuit
 
     print("Loading predictor...")
     predictor = GNNPredictor()

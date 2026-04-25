@@ -221,7 +221,7 @@ if __name__ == "__main__":
     import sys, os
     sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-    from core.pipeline import load_circuit
+    from pipeline_v1 import load_circuit
 
     # Test on c17 first
     print("Testing GA on s1196...")

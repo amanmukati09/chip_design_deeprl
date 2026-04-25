@@ -242,7 +242,7 @@ def generate_training_data(circuit,
 
 # ── Quick test ───────────────────────────────────────
 if __name__ == "__main__":
-    from core.pipeline import load_circuit
+    from pipeline_v1 import load_circuit
 
     circuit, _ = load_circuit("data/benchmarks/s1196.bench")
 
