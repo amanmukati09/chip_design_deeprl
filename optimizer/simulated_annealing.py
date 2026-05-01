@@ -320,11 +320,135 @@
 # Simulated Annealing — now uses pattern-based correct mutations only.
 # All mutations validated via truth-table equivalence check.
 
+# import random
+# import math
+# import copy
+# import sys
+# import os
+
+# sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+# from optimizer.cost_function import compute_pac_cost
+# from optimizer.mutations     import apply_safe_mutation
+
+
+# def simulated_annealing(circuit,
+#                          initial_temp        = 100.0,
+#                          cooling_rate        = 0.95,
+#                          min_temp            = 0.1,
+#                          iterations_per_temp = 10,
+#                          verbose             = True):
+#     current_gates = copy.deepcopy(circuit.gates)
+#     current_cost  = compute_pac_cost(current_gates, circuit.inputs)['total_cost']
+#     best_gates    = copy.deepcopy(current_gates)
+#     best_cost     = current_cost
+#     temp          = initial_temp
+#     history       = []
+#     iteration     = 0
+
+#     if verbose:
+#         print()
+#         print("=" * 50)
+#         print("  SIMULATED ANNEALING  (correct mutations)")
+#         print("=" * 50)
+#         print(f"  Circuit     : {circuit.name}")
+#         print(f"  Gates       : {circuit.gate_count}")
+#         print(f"  Start cost  : {current_cost}")
+#         print(f"  Start temp  : {initial_temp}")
+#         print("-" * 50)
+
+#     while temp > min_temp:
+#         for _ in range(iterations_per_temp):
+#             iteration += 1
+
+#             # Pattern-based mutation with correctness filter
+#             new_gates = apply_safe_mutation(
+#                 circuit.inputs, circuit.outputs,
+#                 current_gates, max_attempts=20, validate=True
+#             )
+#             if new_gates is None:
+#                 continue  # No valid mutation found — skip this step
+
+#             new_cost = compute_pac_cost(new_gates, circuit.inputs)['total_cost']
+#             delta    = new_cost - current_cost
+
+#             if delta < 0:
+#                 current_gates = new_gates
+#                 current_cost  = new_cost
+#                 if current_cost < best_cost:
+#                     best_gates = copy.deepcopy(current_gates)
+#                     best_cost  = current_cost
+#             else:
+#                 if random.random() < math.exp(-delta / temp):
+#                     current_gates = new_gates
+#                     current_cost  = new_cost
+
+#         history.append((round(temp, 4), round(current_cost, 4)))
+#         temp *= cooling_rate
+
+#     if verbose:
+#         print(f"  Iterations  : {iteration}")
+#         print(f"  Final temp  : {round(temp, 4)}")
+#         print(f"  Best cost   : {best_cost}")
+#         improvement = ((circuit.cost - best_cost) / circuit.cost) * 100
+#         print(f"  Improvement : {round(improvement, 2)}%")
+#         print("=" * 50)
+
+#     return best_gates, best_cost, history
+
+
+# # Keep apply_random_mutation as alias so GA/hybrid imports don't break
+# # — but it now routes through the correct engine
+# def apply_random_mutation(gates, inputs=None):
+#     """Legacy alias — now calls the correct pattern-based engine."""
+#     if inputs is None:
+#         inputs = []
+#     # We need outputs for validation; skip validation here,
+#     # callers that need full validation use apply_safe_mutation directly
+#     from optimizer.mutations import (mutate_remove_buffer,
+#                                       mutate_double_negation,
+#                                       mutate_demorgan_collapse,
+#                                       mutate_input_reorder,
+#                                       mutate_deduplicate_gates)
+#     rules   = [mutate_remove_buffer, mutate_double_negation,
+#                 mutate_demorgan_collapse, mutate_input_reorder,
+#                 mutate_deduplicate_gates]
+#     weights = [30, 25, 25, 15, 5]
+
+#     for _ in range(20):
+#         fn     = random.choices(rules, weights=weights, k=1)[0]
+#         result = fn(gates)
+#         if result is not None:
+#             return result
+#     return copy.deepcopy(gates)
+
+
+# if __name__ == "__main__":
+#     import sys, os
+#     sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+#     from core.pipeline import load_circuit
+
+#     circuit, _ = load_circuit("data/benchmarks/s1196.bench")
+#     best_gates, best_cost, history = simulated_annealing(
+#         circuit, initial_temp=100.0, cooling_rate=0.95,
+#         min_temp=0.1, iterations_per_temp=10, verbose=True
+#     )
+#     print(f"\nOriginal : {circuit.cost}")
+#     print(f"Optimized: {best_cost}")
+#     print(f"Improvement: {round((circuit.cost-best_cost)/circuit.cost*100, 2)}%")
+
+#-------------------------------------------------------- Version 2 -------------------------------
+
+# optimizer/simulated_annealing.py
+# Simulated Annealing — pattern-based correct mutations only.
+# All mutations validated via truth-table equivalence check.
+
 import random
 import math
 import copy
 import sys
 import os
+import time
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -333,18 +457,29 @@ from optimizer.mutations     import apply_safe_mutation
 
 
 def simulated_annealing(circuit,
-                         initial_temp        = 100.0,
+                         initial_temp        = 50.0,
                          cooling_rate        = 0.95,
                          min_temp            = 0.1,
                          iterations_per_temp = 10,
+                         validate            = True,
                          verbose             = True):
+    """
+    Simulated Annealing with functionally correct mutations.
+    Every candidate passes validate_functional_equivalence() first.
+
+    Returns:
+        best_gates  : optimized gates dict (guaranteed equivalent)
+        best_cost   : lowest PAC cost found
+        history     : list of (temp, cost)
+    """
     current_gates = copy.deepcopy(circuit.gates)
-    current_cost  = compute_pac_cost(current_gates, circuit.inputs)['total_cost']
-    best_gates    = copy.deepcopy(current_gates)
-    best_cost     = current_cost
-    temp          = initial_temp
-    history       = []
-    iteration     = 0
+    current_cost  = compute_pac_cost(current_gates,
+                                      circuit.inputs)['total_cost']
+    best_gates = copy.deepcopy(current_gates)
+    best_cost  = current_cost
+    temp       = initial_temp
+    history    = []
+    iteration  = 0
 
     if verbose:
         print()
@@ -354,23 +489,22 @@ def simulated_annealing(circuit,
         print(f"  Circuit     : {circuit.name}")
         print(f"  Gates       : {circuit.gate_count}")
         print(f"  Start cost  : {current_cost}")
-        print(f"  Start temp  : {initial_temp}")
+        print(f"  Validate    : {validate}")
         print("-" * 50)
 
     while temp > min_temp:
         for _ in range(iterations_per_temp):
             iteration += 1
-
-            # Pattern-based mutation with correctness filter
             new_gates = apply_safe_mutation(
-                circuit.inputs, circuit.outputs,
-                current_gates, max_attempts=20, validate=True
+                circuit.inputs, circuit.outputs, current_gates,
+                max_attempts=20, validate=validate
             )
             if new_gates is None:
-                continue  # No valid mutation found — skip this step
+                continue
 
-            new_cost = compute_pac_cost(new_gates, circuit.inputs)['total_cost']
-            delta    = new_cost - current_cost
+            new_cost = compute_pac_cost(new_gates,
+                                         circuit.inputs)['total_cost']
+            delta = new_cost - current_cost
 
             if delta < 0:
                 current_gates = new_gates
@@ -387,52 +521,48 @@ def simulated_annealing(circuit,
         temp *= cooling_rate
 
     if verbose:
-        print(f"  Iterations  : {iteration}")
-        print(f"  Final temp  : {round(temp, 4)}")
-        print(f"  Best cost   : {best_cost}")
         improvement = ((circuit.cost - best_cost) / circuit.cost) * 100
+        print(f"  Iterations  : {iteration}")
+        print(f"  Best cost   : {best_cost}")
         print(f"  Improvement : {round(improvement, 2)}%")
         print("=" * 50)
 
     return best_gates, best_cost, history
 
 
-# Keep apply_random_mutation as alias so GA/hybrid imports don't break
-# — but it now routes through the correct engine
-def apply_random_mutation(gates, inputs=None):
-    """Legacy alias — now calls the correct pattern-based engine."""
-    if inputs is None:
-        inputs = []
-    # We need outputs for validation; skip validation here,
-    # callers that need full validation use apply_safe_mutation directly
-    from optimizer.mutations import (mutate_remove_buffer,
-                                      mutate_double_negation,
-                                      mutate_demorgan_collapse,
-                                      mutate_input_reorder,
-                                      mutate_deduplicate_gates)
-    rules   = [mutate_remove_buffer, mutate_double_negation,
-                mutate_demorgan_collapse, mutate_input_reorder,
-                mutate_deduplicate_gates]
-    weights = [30, 25, 25, 15, 5]
+# ── Backward-compat stubs (used by GA, hybrid, data_collector) ──
 
-    for _ in range(20):
-        fn     = random.choices(rules, weights=weights, k=1)[0]
-        result = fn(gates)
-        if result is not None:
-            return result
+def apply_random_mutation(gates, inputs=None):
+    """Redirects to safe mutation engine. validate=False for speed."""
+    from optimizer.mutations import apply_safe_mutation as _safe
+    inp    = inputs if inputs else []
+    result = _safe(inp, [], gates, max_attempts=10, validate=False)
+    return result if result is not None else copy.deepcopy(gates)
+
+
+def mutate_swap_gate(gates):
     return copy.deepcopy(gates)
 
 
+def mutate_remove_buffer(gates):
+    from optimizer.mutations import mutate_remove_buffer as _r
+    result = _r(gates)
+    return result if result is not None else copy.deepcopy(gates)
+
+
 if __name__ == "__main__":
-    import sys, os
     sys.path.append(os.path.dirname(os.path.dirname(__file__)))
     from core.pipeline import load_circuit
 
     circuit, _ = load_circuit("data/benchmarks/s1196.bench")
-    best_gates, best_cost, history = simulated_annealing(
-        circuit, initial_temp=100.0, cooling_rate=0.95,
-        min_temp=0.1, iterations_per_temp=10, verbose=True
+    t0 = time.perf_counter()
+    best_gates, best_cost, _ = simulated_annealing(
+        circuit, initial_temp=50.0, cooling_rate=0.95,
+        min_temp=0.1, iterations_per_temp=10,
+        validate=True, verbose=True
     )
-    print(f"\nOriginal : {circuit.cost}")
-    print(f"Optimized: {best_cost}")
-    print(f"Improvement: {round((circuit.cost-best_cost)/circuit.cost*100, 2)}%")
+    elapsed = time.perf_counter() - t0
+    print(f"\n  Original : {circuit.cost}")
+    print(f"  Best     : {best_cost}")
+    print(f"  Gain     : {round((circuit.cost-best_cost)/circuit.cost*100,2)}%")
+    print(f"  Time     : {round(elapsed,2)}s")

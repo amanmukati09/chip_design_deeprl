@@ -1,70 +1,63 @@
-=======================================================
-  OPTIMIZATION REPORT
-  Circuit   : s1196
-  Optimizer : safe_mutations_test
-  Timestamp : 2026-04-26 03:44:37
-=======================================================
+============================================================
+  AI-DRIVEN CIRCUIT OPTIMIZATION REPORT
+============================================================
+  Circuit    : s1196
+  Optimizer  : SingleMutation-Test
+  Time       : 0.428s
+  Generated  : 2026-05-02 01:18:26
+============================================================
 
-PAC COST COMPARISON
----------------------------------------------
-  Metric              Original    Optimized     Change
-  --------------- ------------ ------------ ----------
-  Power              1298.2500    1289.3500     -0.69%
-  Area                814.4250     806.4150     -0.98%
-  WireLength         1027.0000   
-   1020.0000     -0.68%
-  TOTAL COST          845.4455     838.6838     -0.80%
+  FUNCTIONAL CORRECTNESS
+------------------------------------------------------------
+  Status     : EQUIVALENT ✓  (safe to use)
+  Method     : Truth-table exhaustive / sampled check
 
-  PAC Improvement : 0.7998%
-  Weights         : α=0.4 (Power)  β=0.4 (Area)  γ=0.2 (Wire)
+  PAC COST COMPARISON
+------------------------------------------------------------
+  Metric                   Original    Optimized     Change
+  -------------------- ------------ ------------ ----------
+  Power                   1298.2500    1296.5500 ↓    0.13%
+  Area                     814.4250     813.0450 ↓    0.17%
+  WireLength              1027.0000    1026.0000 ↓    0.10%
+  TOTAL COST               845.4455     844.2138 ↓    0.15%
 
-GATE COUNT
----------------------------------------------
-  Original  : 547
-  Optimized : 540
-  Reduction : 7 gates (1.28%)
+  Weights    : α=0.4 (Power)  β=0.4 (Area)  γ=0.2 (Wire)
+  Net improvement : 0.1457%
 
-GATE-LEVEL DIFF
-=============================================
-  Original gates : 547
-  Optimized gates: 540
-  Net change     : -7 gates
+  GATE COUNT
+------------------------------------------------------------
+  Original   : 547
+  Optimized  : 546
+  Net change : -1 gates
 
-  REMOVED (8 gates):
-    - G145 = OR(G426, G427)
-    - G228 = NOT(G524)
-    - G334 = NOT(I156)
+  GATE TYPE BREAKDOWN
+------------------------------------------------------------
+  Type         Original  Optimized   Change
+  ---------- ---------- ---------- --------
+  AND               118        117       -1
+  DFF                18         18       +0
+  NAND              119        120       +1
+  NOR                50         50       +0
+  NOT               141        140       -1
+  OR                101        101       +0
+
+  GATE-LEVEL DIFF
+------------------------------------------------------------
+  Removed (1 gates):
     - G357 = AND(G265, G232)
-    - G484 = NOT(G30)
-    - G527 = NOT(G4)
-    - G79 = OR(G444, G445)
-    - I218 = NOT(G528)
 
-  ADDED (1 gates):
-    + _exp_G211 = OR(G6, G274)
+  Changed (1 gates):
+    ~ G177: NOT(G357) → NAND(G265, G232)
 
-  REWIRED (13 gates):
-    ~ G129: NAND(G527, G5)  →  NAND(I156, G5)
-    ~ G177: NOT(G357)  →  NAND(G265, G232)
-    ~ G200: NAND(G527, G529)  →  NAND(I156, G529)
-    ~ G211: NOR(G6, G274)  →  NOT(_exp_G211)
-    ~ G226: NAND(G527, G59)  →  NAND(I156, G59)
-    ~ G262: NAND(G527, G278)  →  NAND(I156, G278)
-    ~ G296: OR(G89, G484)  →  OR(G89, G476)
-    ~ G314: OR(G527, G57)  →  OR(I156, G57)
-    ~ G333: NOT(I218)  →  NOT(G5)
-    ~ G421: OR(G521, G2, G228)  →  OR(G521, G2, G3)
-    ~ G82: NAND(G334, G335)  →  NAND(G4, G335)
-    ~ I536: NOT(G79)  →  NOR(G444, G445)
-    ~ I692: NOT(G145)  →  NOR(G426, G427)
+  VERIFICATION
+------------------------------------------------------------
+  To verify functional equivalence externally:
 
-EQUIVALENCE CHECK (ABC)
----------------------------------------------
-  Run the following command in your ABC installation:
+  ABC (recommended):
+    abc -c "cec s1196.bench s1196_optimized.bench"
+    Expected: Networks are equivalent.
 
-  abc -c "cec C:/Users/Kashish/OneDrive/Desktop/VLSI/output/s1196_original.bench C:/Users/Kashish/OneDrive/Desktop/VLSI/output/s1196_optimized.bench"
+  Yosys:
+    yosys -p "read_bench s1196.bench; read_bench s1196_optimized.bench; equiv_check"
 
-  Expected result: Networks are equivalent.
-  If NOT equivalent: a mutation rule has a bug — report immediately.
-
-=======================================================
+============================================================
