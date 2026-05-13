@@ -27,6 +27,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 SUPPORTED_FORMATS = {
     '.bench' : 'core.parsers.bench_parser',
     '.isc'   : 'core.parsers.isc_parser',
+    '.v'   : 'core.parsers.verilog_parser',
     # '.v'   : 'core.parsers.verilog_parser',   ← uncomment when built
     # '.blif': 'core.parsers.blif_parser',       ← future
 }

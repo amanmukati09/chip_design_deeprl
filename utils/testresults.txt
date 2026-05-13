@@ -1,0 +1,1721 @@
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\simulated_annealing.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  SIMULATED ANNEALING  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Iterations  : 1220
+  Best cost   : 785.1304
+  Improvement : 7.13%
+==================================================
+
+  Original : 845.4455
+  Best     : 785.1304
+  Gain     : 7.13%
+  Time     : 618.91s
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 30
+  Generations : 50
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.6348 | Avg: 843.7168 | Improvement: 0.45%
+  Gen  11 | Best: 835.6171 | Avg: 836.9378 | Improvement: 1.16%
+  Gen  21 | Best: 830.5748 | Avg: 831.2912 | Improvement: 1.76%
+  Gen  31 | Best: 823.6976 | Avg: 825.2018 | Improvement: 2.57%
+  Gen  41 | Best: 816.8204 | Avg: 818.5110 | Improvement: 3.39%
+  Gen  50 | Best: 812.5222 | Avg: 813.7830 | Improvement: 3.89%
+--------------------------------------------------
+  Final best cost  : 812.5222
+  Total improvement: 3.89%
+==================================================
+
+  Original : 845.4455
+  Best     : 812.5222
+  Gain     : 3.89%
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 30
+  Generations : 100
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.2628 | Avg: 843.5372 | Improvement: 0.49%
+  Gen  11 | Best: 836.5924 | Avg: 838.5339 | Improvement: 1.05%
+  Gen  21 | Best: 831.4345 | Avg: 832.2654 | Improvement: 1.66%
+  Gen  31 | Best: 824.5572 | Avg: 826.1619 | Improvement: 2.47%
+  Gen  41 | Best: 817.6800 | Avg: 819.3553 | Improvement: 3.28%
+  Gen  51 | Best: 814.2415 | Avg: 815.5023 | Improvement: 3.69%
+  Gen  61 | Best: 808.2241 | Avg: 809.3416 | Improvement: 4.40%
+  Gen  71 | Best: 803.0664 | Avg: 804.4969 | Improvement: 5.01%
+  Gen  81 | Best: 799.6279 | Avg: 801.3472 | Improvement: 5.42%
+  Gen  91 | Best: 797.0491 | Avg: 798.2649 | Improvement: 5.72%
+  Gen 100 | Best: 792.7511 | Avg: 793.6680 | Improvement: 6.23%
+--------------------------------------------------
+  Final best cost  : 792.7511
+  Total improvement: 6.23%
+==================================================
+
+  Original : 845.4455
+  Best     : 792.7511
+  Gain     : 6.23%
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 30
+  Generations : 150
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.2628 | Avg: 843.5449 | Improvement: 0.49%
+  Gen  11 | Best: 838.6838 | Avg: 840.3748 | Improvement: 0.80%
+  Gen  21 | Best: 833.5258 | Avg: 835.3443 | Improvement: 1.41%
+  Gen  31 | Best: 827.5082 | Avg: 828.3066 | Improvement: 2.12%
+  Gen  41 | Best: 823.2099 | Avg: 824.1269 | Improvement: 2.63%
+  Gen  51 | Best: 818.9117 | Avg: 820.5737 | Improvement: 3.14%
+  Gen  61 | Best: 812.0346 | Avg: 814.0528 | Improvement: 3.95%
+  Gen  71 | Best: 805.1576 | Avg: 805.9599 | Improvement: 4.77%
+  Gen  81 | Best: 800.8595 | Avg: 803.6227 | Improvement: 5.27%
+  Gen  91 | Best: 793.9827 | Avg: 795.0715 | Improvement: 6.09%
+  Gen 101 | Best: 791.4039 | Avg: 792.2186 | Improvement: 6.39%
+  Gen 111 | Best: 787.9656 | Avg: 788.6208 | Improvement: 6.80%
+  Gen 121 | Best: 785.3868 | Avg: 786.6886 | Improvement: 7.10%
+  Gen 131 | Best: 785.3868 | Avg: 785.5100 | Improvement: 7.10%
+  Gen 141 | Best: 785.3868 | Avg: 785.5100 | Improvement: 7.10%
+  Gen 150 | Best: 785.3868 | Avg: 785.4279 | Improvement: 7.10%
+--------------------------------------------------
+  Final best cost  : 785.3868
+  Total improvement: 7.1%
+==================================================
+
+  Original : 845.4455
+  Best     : 785.3868
+  Gain     : 7.1%
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 40
+  Generations : 150
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.6348 | Avg: 843.8997 | Improvement: 0.45%
+  Gen  11 | Best: 834.8731 | Avg: 836.0766 | Improvement: 1.25%
+  Gen  21 | Best: 828.8555 | Avg: 831.0999 | Improvement: 1.96%
+  Gen  31 | Best: 822.8379 | Avg: 824.4712 | Improvement: 2.67%
+  Gen  41 | Best: 816.8204 | Avg: 818.7976 | Improvement: 3.39%
+  Gen  51 | Best: 811.6626 | Avg: 812.6576 | Improvement: 4.00%
+  Gen  61 | Best: 805.6452 | Avg: 806.4067 | Improvement: 4.71%
+  Gen  71 | Best: 799.6279 | Avg: 801.3042 | Improvement: 5.42%
+  Gen  81 | Best: 795.3299 | Avg: 796.2110 | Improvement: 5.93%
+  Gen  91 | Best: 791.8915 | Avg: 792.6529 | Improvement: 6.33%
+  Gen 101 | Best: 788.4532 | Avg: 789.3013 | Improvement: 6.74%
+  Gen 111 | Best: 785.8744 | Avg: 786.6788 | Improvement: 7.05%
+  Gen 121 | Best: 785.8744 | Avg: 785.9360 | Improvement: 7.05%
+  Gen 131 | Best: 785.8744 | Avg: 785.9058 | Improvement: 7.05%
+  Gen 141 | Best: 785.8744 | Avg: 786.0284 | Improvement: 7.05%
+  Gen 150 | Best: 785.8744 | Avg: 785.9360 | Improvement: 7.05%
+--------------------------------------------------
+  Final best cost  : 785.8744
+  Total improvement: 7.05%
+==================================================
+
+  Original : 845.4455
+  Best     : 785.8744
+  Gain     : 7.05%
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\hybrid_optimizer.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+=======================================================
+  HYBRID OPTIMIZER  (GA → SA)
+=======================================================
+  Circuit      : s1196
+  Gates        : 547
+  Original cost: 845.4455
+=======================================================
+
+[Phase 1] Running Genetic Algorithm...
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 40
+  Generations : 100
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.2628 | Avg: 843.3304 | Improvement: 0.49%
+  Gen  11 | Best: 836.1048 | Avg: 838.9039 | Improvement: 1.10%
+  Gen  21 | Best: 830.5748 | Avg: 832.0240 | Improvement: 1.76%
+  Gen  31 | Best: 826.2765 | Avg: 827.9099 | Improvement: 2.27%
+  Gen  41 | Best: 817.6800 | Avg: 820.6888 | Improvement: 3.28%
+  Gen  51 | Best: 812.5222 | Avg: 814.9170 | Improvement: 3.89%
+  Gen  61 | Best: 809.0837 | Avg: 809.9863 | Improvement: 4.30%
+  Gen  71 | Best: 801.3472 | Avg: 803.4074 | Improvement: 5.22%
+  Gen  81 | Best: 795.3299 | Avg: 797.5219 | Improvement: 5.93%
+  Gen  91 | Best: 791.0319 | Avg: 792.4595 | Improvement: 6.44%
+  Gen 100 | Best: 788.4532 | Avg: 789.2891 | Improvement: 6.74%
+--------------------------------------------------
+  Final best cost  : 788.4532
+  Total improvement: 6.74%
+==================================================
+
+[Phase 1] GA complete.
+  GA best cost : 788.4532
+  GA improvement: 6.74%
+
+[Phase 2] Running Simulated Annealing on GA's best result...
+
+==================================================
+  SIMULATED ANNEALING  (correct mutations)
+==================================================
+  Circuit     : s1196_ga
+  Gates       : 482
+  Start cost  : 788.4532
+  Validate    : True
+--------------------------------------------------
+  Iterations  : 1220
+  Best cost   : 785.5024
+  Improvement : 0.37%
+==================================================
+
+=======================================================
+  HYBRID OPTIMIZATION COMPLETE
+=======================================================
+  Original cost     : 845.4455
+  After GA          : 788.4532  (6.74% better)
+  After SA refinement: 785.5024  (7.09% better)
+  Total improvement : 7.09%
+=======================================================
+
+FINAL REPORT:
+  circuit_name              : s1196
+  gate_count                : 547
+  original_cost             : 845.4455
+  ga_cost                   : 788.4532
+  sa_cost                   : 785.5024
+  best_cost                 : 785.5024
+  ga_improvement            : 6.74
+  sa_improvement            : 7.09
+  total_improvement         : 7.09
+  ga_generations            : 100
+  ga_population             : 40
+  sa_initial_temp           : 50.0
+
+  PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\hybrid_optimizer.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+=======================================================
+  HYBRID OPTIMIZER  (GA → SA)
+=======================================================
+  Circuit      : s1196
+  Gates        : 547
+  Original cost: 845.4455
+=======================================================
+
+[Phase 1] Running Genetic Algorithm...
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 20
+  Generations : 50
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 842.4945 | Avg: 843.8840 | Improvement: 0.35%
+  Gen  11 | Best: 836.1048 | Avg: 836.7495 | Improvement: 1.10%
+  Gen  21 | Best: 830.9468 | Avg: 831.4998 | Improvement: 1.71%
+  Gen  31 | Best: 824.9292 | Avg: 825.1627 | Improvement: 2.43%
+  Gen  41 | Best: 818.0520 | Avg: 819.6853 | Improvement: 3.24%
+  Gen  50 | Best: 814.6135 | Avg: 815.5976 | Improvement: 3.65%
+--------------------------------------------------
+  Final best cost  : 814.6135
+  Total improvement: 3.65%
+==================================================
+
+[Phase 1] GA complete.
+  GA best cost : 814.6135
+  GA improvement: 3.65%
+
+[Phase 2] Running Simulated Annealing on GA's best result...
+
+==================================================
+  SIMULATED ANNEALING  (correct mutations)
+==================================================
+  Circuit     : s1196_ga
+  Gates       : 512
+  Start cost  : 814.6135
+  Validate    : True
+--------------------------------------------------
+  Iterations  : 1220
+  Best cost   : 785.3868
+  Improvement : 3.59%
+==================================================
+
+=======================================================
+  HYBRID OPTIMIZATION COMPLETE
+=======================================================
+  Original cost     : 845.4455
+  After GA          : 814.6135  (3.65% better)
+  After SA refinement: 785.3868  (7.1% better)
+  Total improvement : 7.1%
+=======================================================
+
+FINAL REPORT:
+  circuit_name              : s1196
+  gate_count                : 547
+  original_cost             : 845.4455
+  ga_cost                   : 814.6135
+  sa_cost                   : 785.3868
+  best_cost                 : 785.3868
+  ga_improvement            : 3.65
+  sa_improvement            : 7.1
+  total_improvement         : 7.1
+  ga_generations            : 50
+  ga_population             : 20
+  sa_initial_temp           : 50.0
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\hybrid_optimizer.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+=======================================================
+  HYBRID OPTIMIZER  (GA → SA)
+=======================================================
+  Circuit      : s1196
+  Gates        : 547
+  Original cost: 845.4455
+=======================================================
+
+[Phase 1] Running Genetic Algorithm...
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 20
+  Generations : 50
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.6348 | Avg: 843.7936 | Improvement: 0.45%
+  Gen  11 | Best: 835.7328 | Avg: 838.2750 | Improvement: 1.15%
+  Gen  21 | Best: 828.8555 | Avg: 830.4215 | Improvement: 1.96%
+  Gen  31 | Best: 823.6976 | Avg: 825.8467 | Improvement: 2.57%
+  Gen  41 | Best: 817.6800 | Avg: 819.2704 | Improvement: 3.28%
+  Gen  50 | Best: 811.6626 | Avg: 813.1195 | Improvement: 4.00%
+--------------------------------------------------
+  Final best cost  : 811.6626
+  Total improvement: 4.0%
+==================================================
+
+[Phase 1] GA complete.
+  GA best cost : 811.6626
+  GA improvement: 4.0%
+
+[Phase 2] Running Simulated Annealing on GA's best result...
+
+==================================================
+  SIMULATED ANNEALING  (correct mutations)
+==================================================
+  Circuit     : s1196_ga
+  Gates       : 509
+  Start cost  : 811.6626
+  Validate    : True
+--------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\hybrid_optimizer.py", line 172, in <module>
+    best_gates, best_cost, report = hybrid_optimize(
+                                    ~~~~~~~~~~~~~~~^
+        circuit,
+        ^^^^^^^^
+    ...<4 lines>...
+        verbose        = True
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\hybrid_optimizer.py", line 112, in hybrid_optimize
+    sa_gates, sa_cost, sa_history = simulated_annealing(
+                                    ~~~~~~~~~~~~~~~~~~~^
+        ga_circuit,
+        ^^^^^^^^^^^
+    ...<4 lines>...
+        verbose             = verbose
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\simulated_annealing.py", line 498, in simulated_annealing
+    new_gates = apply_safe_mutation(
+        circuit.inputs, circuit.outputs, current_gates,
+        max_attempts=20, validate=validate
+    )
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 566, in apply_safe_mutation
+    if validate_functional_equivalence(inputs, outputs, gates, mutated):
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 176, in validate_functional_equivalence
+    mut_out  = _evaluate_circuit(inputs, outputs, mutated_gates,  assignment)
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 121, in _evaluate_circuit
+    output_vals[out] = evaluate_signal(out)
+                       ~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 114, in evaluate_signal
+    input_vals = [evaluate_signal(s) for s in gate_inputs]
+                  ~~~~~~~~~~~~~~~^^^
+KeyboardInterrupt
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\hybrid_optimizer.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+=======================================================
+  HYBRID OPTIMIZER  (GA → SA)
+=======================================================
+  Circuit      : s1196
+  Gates        : 547
+  Original cost: 845.4455
+=======================================================
+
+[Phase 1] Running Genetic Algorithm...
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 20
+  Generations : 50
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.6348 | Avg: 843.5228 | Improvement: 0.45%
+  Gen  11 | Best: 835.7328 | Avg: 835.7328 | Improvement: 1.15%
+  Gen  21 | Best: 831.4345 | Avg: 832.0978 | Improvement: 1.66%
+  Gen  31 | Best: 827.1362 | Avg: 827.9958 | Improvement: 2.17%
+  Gen  41 | Best: 821.9783 | Avg: 823.5686 | Improvement: 2.78%
+  Gen  50 | Best: 815.9608 | Avg: 817.4221 | Improvement: 3.49%
+--------------------------------------------------
+  Final best cost  : 815.9608
+  Total improvement: 3.49%
+==================================================
+
+[Phase 1] GA complete.
+  GA best cost : 815.9608
+  GA improvement: 3.49%
+
+[Phase 2] Running Simulated Annealing on GA's best result...
+
+==================================================
+  SIMULATED ANNEALING  (correct mutations)
+==================================================
+  Circuit     : s1196_ga
+  Gates       : 514
+  Start cost  : 815.9608
+  Validate    : True
+--------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\hybrid_optimizer.py", line 172, in <module>
+    best_gates, best_cost, report = hybrid_optimize(
+                                    ~~~~~~~~~~~~~~~^
+        circuit,
+        ^^^^^^^^
+    ...<4 lines>...
+        verbose        = True
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\hybrid_optimizer.py", line 112, in hybrid_optimize
+    sa_gates, sa_cost, sa_history = simulated_annealing(
+                                    ~~~~~~~~~~~~~~~~~~~^
+        ga_circuit,
+        ^^^^^^^^^^^
+    ...<4 lines>...
+        verbose             = verbose
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\simulated_annealing.py", line 498, in simulated_annealing
+    new_gates = apply_safe_mutation(
+        circuit.inputs, circuit.outputs, current_gates,
+        max_attempts=20, validate=validate
+    )
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 566, in apply_safe_mutation
+    if validate_functional_equivalence(inputs, outputs, gates, mutated):
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 176, in validate_functional_equivalence
+    mut_out  = _evaluate_circuit(inputs, outputs, mutated_gates,  assignment)
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 121, in _evaluate_circuit
+    output_vals[out] = evaluate_signal(out)
+                       ~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 114, in evaluate_signal
+    input_vals = [evaluate_signal(s) for s in gate_inputs]
+                  ~~~~~~~~~~~~~~~^^^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 114, in evaluate_signal
+    input_vals = [evaluate_signal(s) for s in gate_inputs]
+                  ~~~~~~~~~~~~~~~^^^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 114, in evaluate_signal
+    input_vals = [evaluate_signal(s) for s in gate_inputs]
+                  ~~~~~~~~~~~~~~~^^^
+  [Previous line repeated 3 more times]
+KeyboardInterrupt
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\hybrid_optimizer.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+=======================================================
+  HYBRID OPTIMIZER  (GA → SA)
+=======================================================
+  Circuit      : s1196
+  Gates        : 547
+  Original cost: 845.4455
+=======================================================
+
+[Phase 1] Running Genetic Algorithm...
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 20
+  Generations : 150
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.2628 | Avg: 843.7679 | Improvement: 0.49%
+  Gen  11 | Best: 834.0134 | Avg: 835.4311 | Improvement: 1.35%
+  Gen  21 | Best: 828.8555 | Avg: 830.3785 | Improvement: 1.96%
+  Gen  31 | Best: 824.5572 | Avg: 825.3739 | Improvement: 2.47%
+  Gen  41 | Best: 820.2590 | Avg: 821.8923 | Improvement: 2.98%
+  Gen  51 | Best: 812.5222 | Avg: 814.0266 | Improvement: 3.89%
+  Gen  61 | Best: 809.0837 | Avg: 810.6067 | Improvement: 4.30%
+  Gen  71 | Best: 803.9260 | Avg: 805.7742 | Improvement: 4.91%
+  Gen  81 | Best: 798.7683 | Avg: 800.0577 | Improvement: 5.52%
+  Gen  91 | Best: 794.4703 | Avg: 795.1580 | Improvement: 6.03%
+  Gen 101 | Best: 791.0319 | Avg: 791.7812 | Improvement: 6.44%
+  Gen 111 | Best: 788.4532 | Avg: 789.2268 | Improvement: 6.74%
+  Gen 121 | Best: 786.7340 | Avg: 787.3543 | Improvement: 6.94%
+  Gen 131 | Best: 785.8744 | Avg: 785.8744 | Improvement: 7.05%
+  Gen 141 | Best: 785.8744 | Avg: 785.9360 | Improvement: 7.05%
+  Gen 150 | Best: 785.8744 | Avg: 786.0604 | Improvement: 7.05%
+--------------------------------------------------
+  Final best cost  : 785.8744
+  Total improvement: 7.05%
+==================================================
+
+[Phase 1] GA complete.
+  GA best cost : 785.8744
+  GA improvement: 7.05%
+
+[Phase 2] Running Simulated Annealing on GA's best result...
+
+==================================================
+  SIMULATED ANNEALING  (correct mutations)
+==================================================
+  Circuit     : s1196_ga
+  Gates       : 479
+  Start cost  : 785.8744
+  Validate    : True
+--------------------------------------------------
+  Iterations  : 1220
+  Best cost   : 785.8744
+  Improvement : 0.0%
+==================================================
+
+=======================================================
+  HYBRID OPTIMIZATION COMPLETE
+=======================================================
+  Original cost     : 845.4455
+  After GA          : 785.8744  (7.05% better)
+  After SA refinement: 785.8744  (7.05% better)
+  Total improvement : 7.05%
+=======================================================
+
+FINAL REPORT:
+  circuit_name              : s1196
+  gate_count                : 547
+  original_cost             : 845.4455
+  ga_cost                   : 785.8744
+  sa_cost                   : 785.8744
+  best_cost                 : 785.8744
+  ga_improvement            : 7.05
+  sa_improvement            : 7.05
+  total_improvement         : 7.05
+  ga_generations            : 150
+  ga_population             : 20
+  sa_initial_temp           : 50.0
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\hybrid_optimizer.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+=======================================================
+  HYBRID OPTIMIZER  (GA → SA)
+=======================================================
+  Circuit      : s1196
+  Gates        : 547
+  Original cost: 845.4455
+=======================================================
+
+[Phase 1] Running Genetic Algorithm...
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 40
+  Generations : 100
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.2628 | Avg: 843.9004 | Improvement: 0.49%
+  Gen  11 | Best: 838.1961 | Avg: 839.9455 | Improvement: 0.86%
+  Gen  21 | Best: 831.4345 | Avg: 833.6150 | Improvement: 1.66%
+  Gen  31 | Best: 827.1362 | Avg: 827.7687 | Improvement: 2.17%
+  Gen  41 | Best: 821.1186 | Avg: 822.7397 | Improvement: 2.88%
+  Gen  51 | Best: 815.1011 | Avg: 817.0109 | Improvement: 3.59%
+  Gen  61 | Best: 806.5049 | Avg: 808.8688 | Improvement: 4.61%
+  Gen  71 | Best: 801.3472 | Avg: 803.1630 | Improvement: 5.22%
+  Gen  81 | Best: 797.9087 | Avg: 799.4752 | Improvement: 5.62%
+  Gen  91 | Best: 792.7511 | Avg: 793.8256 | Improvement: 6.23%
+  Gen 100 | Best: 789.3128 | Avg: 790.5684 | Improvement: 6.64%
+--------------------------------------------------
+  Final best cost  : 789.3128
+  Total improvement: 6.64%
+==================================================
+
+[Phase 1] GA complete.
+  GA best cost : 789.3128
+  GA improvement: 6.64%
+
+[Phase 2] Running Simulated Annealing on GA's best result...
+
+==================================================
+  SIMULATED ANNEALING  (correct mutations)
+==================================================
+  Circuit     : s1196_ga
+  Gates       : 483
+  Start cost  : 789.3128
+  Validate    : True
+--------------------------------------------------
+  Iterations  : 1220
+  Best cost   : 785.8744
+  Improvement : 0.44%
+==================================================
+
+=======================================================
+  HYBRID OPTIMIZATION COMPLETE
+=======================================================
+  Original cost     : 845.4455
+  After GA          : 789.3128  (6.64% better)
+  After SA refinement: 785.8744  (7.05% better)
+  Total improvement : 7.05%
+=======================================================
+
+FINAL REPORT:
+  circuit_name              : s1196
+  gate_count                : 547
+  original_cost             : 845.4455
+  ga_cost                   : 789.3128
+  sa_cost                   : 785.8744
+  best_cost                 : 785.8744
+  ga_improvement            : 6.64
+  sa_improvement            : 7.05
+  total_improvement         : 7.05
+  ga_generations            : 100
+  ga_population             : 40
+  sa_initial_temp           : 50.0
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\hybrid_optimizer.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+=======================================================
+  HYBRID OPTIMIZER  (GA → SA)
+=======================================================
+  Circuit      : s1196
+  Gates        : 547
+  Original cost: 845.4455
+=======================================================
+
+[Phase 1] Running Genetic Algorithm...
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 40
+  Generations : 100
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\hybrid_optimizer.py", line 172, in <module>
+    best_gates, best_cost, report = hybrid_optimize(
+                                    ~~~~~~~~~~~~~~~^
+        circuit,
+        ^^^^^^^^
+    ...<4 lines>...
+        verbose        = True
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\hybrid_optimizer.py", line 75, in hybrid_optimize
+    ga_gates, ga_cost, ga_history = genetic_algorithm(
+                                    ~~~~~~~~~~~~~~~~~^
+        circuit,
+        ^^^^^^^^
+    ...<4 lines>...
+        verbose         = verbose
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\genetic_algorithm.py", line 359, in genetic_algorithm
+    population = create_population(
+        circuit.gates, circuit.inputs, circuit.outputs, population_size
+    )
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\genetic_algorithm.py", line 279, in create_population
+    population.append(create_individual(gates, inputs, outputs))
+                      ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\genetic_algorithm.py", line 267, in create_individual
+    mutated = apply_safe_mutation(
+        inputs, outputs, new_gates,
+        max_attempts=15, validate=True
+    )
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 566, in apply_safe_mutation
+    if validate_functional_equivalence(inputs, outputs, gates, mutated):
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 176, in validate_functional_equivalence
+    mut_out  = _evaluate_circuit(inputs, outputs, mutated_gates,  assignment)
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 121, in _evaluate_circuit
+    output_vals[out] = evaluate_signal(out)
+                       ~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 114, in evaluate_signal
+    input_vals = [evaluate_signal(s) for s in gate_inputs]
+                  ~~~~~~~~~~~~~~~^^^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 114, in evaluate_signal
+    input_vals = [evaluate_signal(s) for s in gate_inputs]
+                  ~~~~~~~~~~~~~~~^^^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 114, in evaluate_signal
+    input_vals = [evaluate_signal(s) for s in gate_inputs]
+                  ~~~~~~~~~~~~~~~^^^
+  [Previous line repeated 9 more times]
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 115, in evaluate_signal
+    result = _eval_gate(gate_type, input_vals)
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\..\optimizer\mutations.py", line 61, in _eval_gate
+    result &= v
+    ^^^^^^
+KeyboardInterrupt
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\hybrid_optimizer.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+=======================================================
+  HYBRID OPTIMIZER  (GA → SA)
+=======================================================
+  Circuit      : s1196
+  Gates        : 547
+  Original cost: 845.4455
+=======================================================
+
+[Phase 1] Running Genetic Algorithm...
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 30
+  Generations : 80
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.6348 | Avg: 843.4666 | Improvement: 0.45%
+  Gen  11 | Best: 837.8241 | Avg: 840.0477 | Improvement: 0.90%
+  Gen  21 | Best: 832.2941 | Avg: 833.0678 | Improvement: 1.56%
+  Gen  31 | Best: 825.4169 | Avg: 827.4065 | Improvement: 2.37%
+  Gen  41 | Best: 820.2590 | Avg: 820.9467 | Improvement: 2.98%
+  Gen  51 | Best: 814.2415 | Avg: 814.6970 | Improvement: 3.69%
+  Gen  61 | Best: 807.3645 | Avg: 809.6281 | Improvement: 4.50%
+  Gen  71 | Best: 802.2068 | Avg: 803.4675 | Improvement: 5.11%
+  Gen  80 | Best: 796.1895 | Avg: 797.3480 | Improvement: 5.83%
+--------------------------------------------------
+  Final best cost  : 796.1895
+  Total improvement: 5.83%
+==================================================
+
+[Phase 1] GA complete.
+  GA best cost : 796.1895
+  GA improvement: 5.83%
+
+[Phase 2] Running Simulated Annealing on GA's best result...
+
+==================================================
+  SIMULATED ANNEALING  (correct mutations)
+==================================================
+  Circuit     : s1196_ga
+  Gates       : 491
+  Start cost  : 796.1895
+  Validate    : True
+--------------------------------------------------
+  Iterations  : 1220
+  Best cost   : 785.5797
+  Improvement : 1.33%
+==================================================
+
+=======================================================
+  HYBRID OPTIMIZATION COMPLETE
+=======================================================
+  Original cost     : 845.4455
+  After GA          : 796.1895  (5.83% better)
+  After SA refinement: 785.5797  (7.08% better)
+  Total improvement : 7.08%
+=======================================================
+
+FINAL REPORT:
+  circuit_name              : s1196
+  gate_count                : 547
+  original_cost             : 845.4455
+  ga_cost                   : 796.1895
+  sa_cost                   : 785.5797
+  best_cost                 : 785.5797
+  ga_improvement            : 5.83
+  sa_improvement            : 7.08
+  total_improvement         : 7.08
+  ga_generations            : 80
+  ga_population             : 30
+  sa_initial_temp           : 50.0
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>
+
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 20
+  Generations : 50
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.2628 | Avg: 843.9739 | Improvement: 0.49%
+  Gen  11 | Best: 835.7328 | Avg: 837.0451 | Improvement: 1.15%
+  Gen  21 | Best: 828.8555 | Avg: 830.0590 | Improvement: 1.96%
+  Gen  31 | Best: 822.8379 | Avg: 824.0414 | Improvement: 2.67%
+  Gen  41 | Best: 817.6800 | Avg: 818.3877 | Improvement: 3.28%
+  Gen  50 | Best: 815.1011 | Avg: 816.0038 | Improvement: 3.59%
+--------------------------------------------------
+  Final best cost  : 815.1011
+  Total improvement: 3.59%
+==================================================
+
+  Original : 845.4455
+  Best     : 815.1011
+  Gain     : 3.59%
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 20
+  Generations : 100
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.6348 | Avg: 843.6505 | Improvement: 0.45%
+  Gen  11 | Best: 838.3118 | Avg: 839.5587 | Improvement: 0.84%
+  Gen  21 | Best: 831.4345 | Avg: 832.8959 | Improvement: 1.66%
+  Gen  31 | Best: 825.4169 | Avg: 827.3883 | Improvement: 2.37%
+  Gen  41 | Best: 819.3993 | Avg: 820.9037 | Improvement: 3.08%
+  Gen  51 | Best: 813.3819 | Avg: 815.3160 | Improvement: 3.79%
+  Gen  61 | Best: 808.2241 | Avg: 809.0837 | Improvement: 4.40%
+  Gen  71 | Best: 800.4875 | Avg: 802.2254 | Improvement: 5.32%
+  Gen  81 | Best: 793.6107 | Avg: 794.3600 | Improvement: 6.13%
+  Gen  91 | Best: 790.1723 | Avg: 791.0505 | Improvement: 6.54%
+  Gen 100 | Best: 787.5936 | Avg: 788.4288 | Improvement: 6.84%
+--------------------------------------------------
+  Final best cost  : 787.5936
+  Total improvement: 6.84%
+==================================================
+
+  Original : 845.4455
+  Best     : 787.5936
+  Gain     : 6.84%
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 20
+  Generations : 200
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 842.0068 | Avg: 843.7262 | Improvement: 0.41%
+  Gen  11 | Best: 834.0134 | Avg: 836.5623 | Improvement: 1.35%
+  Gen  21 | Best: 829.7151 | Avg: 830.2495 | Improvement: 1.86%
+  Gen  31 | Best: 826.2765 | Avg: 827.5660 | Improvement: 2.27%
+  Gen  41 | Best: 821.1186 | Avg: 822.0399 | Improvement: 2.88%
+  Gen  51 | Best: 817.6800 | Avg: 819.1844 | Improvement: 3.28%
+  Gen  61 | Best: 811.6626 | Avg: 813.0810 | Improvement: 4.00%
+  Gen  71 | Best: 807.3645 | Avg: 808.0952 | Improvement: 4.50%
+  Gen  81 | Best: 801.3472 | Avg: 803.0664 | Improvement: 5.22%
+  Gen  91 | Best: 797.0491 | Avg: 797.7798 | Improvement: 5.72%
+  Gen 101 | Best: 790.1723 | Avg: 792.2539 | Improvement: 6.54%
+  Gen 111 | Best: 787.5936 | Avg: 788.4044 | Improvement: 6.84%
+  Gen 121 | Best: 785.8744 | Avg: 785.8744 | Improvement: 7.05%
+  Gen 131 | Best: 785.8744 | Avg: 785.9360 | Improvement: 7.05%
+  Gen 141 | Best: 785.8744 | Avg: 785.8744 | Improvement: 7.05%
+  Gen 151 | Best: 785.8744 | Avg: 785.8744 | Improvement: 7.05%
+  Gen 161 | Best: 785.8744 | Avg: 785.8744 | Improvement: 7.05%
+  Gen 171 | Best: 785.8744 | Avg: 785.9373 | Improvement: 7.05%
+  Gen 181 | Best: 785.8744 | Avg: 785.9373 | Improvement: 7.05%
+  Gen 191 | Best: 785.8744 | Avg: 785.9360 | Improvement: 7.05%
+  Gen 200 | Best: 785.8744 | Avg: 785.8744 | Improvement: 7.05%
+--------------------------------------------------
+  Final best cost  : 785.8744
+  Total improvement: 7.05%
+==================================================
+
+  Original : 845.4455
+  Best     : 785.8744
+  Gain     : 7.05%
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 20
+  Generations : 200
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.6348 | Avg: 843.8481 | Improvement: 0.45%
+  Gen  11 | Best: 835.6171 | Avg: 837.5096 | Improvement: 1.16%
+  Gen  21 | Best: 831.4345 | Avg: 832.5706 | Improvement: 1.66%
+  Gen  31 | Best: 826.2765 | Avg: 828.3153 | Improvement: 2.27%
+  Gen  41 | Best: 820.2590 | Avg: 822.2362 | Improvement: 2.98%
+  Gen  51 | Best: 817.6800 | Avg: 818.8592 | Improvement: 3.28%
+  Gen  61 | Best: 809.9433 | Avg: 811.9391 | Improvement: 4.20%
+  Gen  71 | Best: 806.5049 | Avg: 807.1496 | Improvement: 4.61%
+  Gen  81 | Best: 802.2068 | Avg: 802.5936 | Improvement: 5.11%
+  Gen  91 | Best: 796.1895 | Avg: 797.2640 | Improvement: 5.83%
+  Gen 101 | Best: 791.8915 | Avg: 792.5362 | Improvement: 6.33%
+  Gen 111 | Best: 789.3128 | Avg: 790.0203 | Improvement: 6.64%
+  Gen 121 | Best: 787.5936 | Avg: 788.1953 | Improvement: 6.84%
+  Gen 131 | Best: 785.8744 | Avg: 785.9360 | Improvement: 7.05%
+  Gen 141 | Best: 785.8744 | Avg: 786.0604 | Improvement: 7.05%
+  Gen 151 | Best: 785.8744 | Avg: 785.9373 | Improvement: 7.05%
+  Gen 161 | Best: 785.8744 | Avg: 786.0604 | Improvement: 7.05%
+  Gen 171 | Best: 785.8744 | Avg: 785.8744 | Improvement: 7.05%
+  Gen 181 | Best: 785.8744 | Avg: 785.8744 | Improvement: 7.05%
+  Gen 191 | Best: 785.8744 | Avg: 785.8744 | Improvement: 7.05%
+Traceback (most recent call last):
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\genetic_algorithm.py", line 405, in <module>
+    best_gates, best_cost, _ = genetic_algorithm(
+                               ~~~~~~~~~~~~~~~~~^
+        circuit, population_size=20, generations=200,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        validate=True, verbose=True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\genetic_algorithm.py", line 385, in genetic_algorithm
+    population = create_next_generation(
+        survivors, circuit.inputs, circuit.outputs,
+        population_size, mutation_rate
+    )
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\genetic_algorithm.py", line 319, in create_next_generation
+    child = crossover(p1, p2)
+  File "C:\Users\Kashish\OneDrive\Desktop\VLSI\optimizer\genetic_algorithm.py", line 303, in crossover
+    child[key] = copy.deepcopy(
+                 ~~~~~~~~~~~~~^
+        parent1[key] if random.random() < 0.5 else parent2[key]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Kashish\AppData\Local\Python\pythoncore-3.14-64\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\Kashish\AppData\Local\Python\pythoncore-3.14-64\Lib\copy.py", line 182, in _deepcopy_tuple
+    y = [deepcopy(a, memo) for a in x]
+         ~~~~~~~~^^^^^^^^^
+KeyboardInterrupt
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 30
+  Generations : 50
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.6348 | Avg: 843.6672 | Improvement: 0.45%
+  Gen  11 | Best: 835.2451 | Avg: 837.1199 | Improvement: 1.21%
+  Gen  21 | Best: 828.8555 | Avg: 831.6064 | Improvement: 1.96%
+  Gen  31 | Best: 821.9783 | Avg: 824.0252 | Improvement: 2.78%
+  Gen  41 | Best: 816.8204 | Avg: 817.5940 | Improvement: 3.39%
+  Gen  50 | Best: 811.6626 | Avg: 813.2099 | Improvement: 4.00%
+--------------------------------------------------
+  Final best cost  : 811.6626
+  Total improvement: 4.0%
+==================================================
+
+  Original : 845.4455
+  Best     : 811.6626
+  Gain     : 4.0%
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 30
+  Generations : 100
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.6348 | Avg: 843.5495 | Improvement: 0.45%
+  Gen  11 | Best: 837.4521 | Avg: 838.6551 | Improvement: 0.95%
+  Gen  21 | Best: 829.7151 | Avg: 831.3485 | Improvement: 1.86%
+  Gen  31 | Best: 826.2765 | Avg: 827.7054 | Improvement: 2.27%
+  Gen  41 | Best: 819.3993 | Avg: 821.7328 | Improvement: 3.08%
+  Gen  51 | Best: 814.2415 | Avg: 814.7829 | Improvement: 3.69%
+  Gen  61 | Best: 809.0837 | Avg: 810.1439 | Improvement: 4.30%
+  Gen  71 | Best: 803.0664 | Avg: 804.7826 | Improvement: 5.01%
+  Gen  81 | Best: 797.0491 | Avg: 798.8543 | Improvement: 5.72%
+  Gen  91 | Best: 792.7511 | Avg: 793.1646 | Improvement: 6.23%
+  Gen 100 | Best: 789.3128 | Avg: 790.0863 | Improvement: 6.64%
+--------------------------------------------------
+  Final best cost  : 789.3128
+  Total improvement: 6.64%
+==================================================
+
+  Original : 845.4455
+  Best     : 789.3128
+  Gain     : 6.64%
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 30
+  Generations : 150
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.2628 | Avg: 843.8896 | Improvement: 0.49%
+  Gen  11 | Best: 834.7574 | Avg: 836.9780 | Improvement: 1.26%
+  Gen  21 | Best: 831.4345 | Avg: 832.9056 | Improvement: 1.66%
+  Gen  31 | Best: 824.5572 | Avg: 825.3882 | Improvement: 2.47%
+  Gen  41 | Best: 819.3993 | Avg: 820.2722 | Improvement: 3.08%
+  Gen  51 | Best: 812.5222 | Avg: 814.5977 | Improvement: 3.89%
+  Gen  61 | Best: 806.5049 | Avg: 808.0808 | Improvement: 4.61%
+  Gen  71 | Best: 803.0664 | Avg: 803.9393 | Improvement: 5.01%
+  Gen  81 | Best: 797.0491 | Avg: 798.4531 | Improvement: 5.72%
+  Gen  91 | Best: 791.8915 | Avg: 793.3212 | Improvement: 6.33%
+  Gen 101 | Best: 788.4532 | Avg: 789.6404 | Improvement: 6.74%
+  Gen 111 | Best: 785.8744 | Avg: 786.5334 | Improvement: 7.05%
+  Gen 121 | Best: 785.8744 | Avg: 785.9155 | Improvement: 7.05%
+  Gen 131 | Best: 785.8744 | Avg: 785.9976 | Improvement: 7.05%
+  Gen 141 | Best: 785.8744 | Avg: 785.9565 | Improvement: 7.05%
+  Gen 150 | Best: 785.8744 | Avg: 785.9155 | Improvement: 7.05%
+--------------------------------------------------
+  Final best cost  : 785.8744
+  Total improvement: 7.05%
+==================================================
+
+  Original : 845.4455
+  Best     : 785.8744
+  Gain     : 7.05%
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 40
+  Generations : 150
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.2628 | Avg: 843.8843 | Improvement: 0.49%
+  Gen  11 | Best: 836.1048 | Avg: 838.1810 | Improvement: 1.10%
+  Gen  21 | Best: 830.9468 | Avg: 832.4041 | Improvement: 1.71%
+  Gen  31 | Best: 827.9958 | Avg: 829.0979 | Improvement: 2.06%
+  Gen  41 | Best: 819.3993 | Avg: 822.0857 | Improvement: 3.08%
+  Gen  51 | Best: 812.5222 | Avg: 815.2394 | Improvement: 3.89%
+  Gen  61 | Best: 807.3645 | Avg: 808.9211 | Improvement: 4.50%
+  Gen  71 | Best: 800.4875 | Avg: 802.1946 | Improvement: 5.32%
+  Gen  81 | Best: 795.3299 | Avg: 796.0699 | Improvement: 5.93%
+  Gen  91 | Best: 792.7511 | Avg: 793.4051 | Improvement: 6.23%
+  Gen 101 | Best: 789.3128 | Avg: 789.9545 | Improvement: 6.64%
+  Gen 111 | Best: 785.8744 | Avg: 786.6788 | Improvement: 7.05%
+  Gen 121 | Best: 785.8744 | Avg: 785.9052 | Improvement: 7.05%
+  Gen 131 | Best: 785.8744 | Avg: 785.8744 | Improvement: 7.05%
+  Gen 141 | Best: 785.8744 | Avg: 785.9052 | Improvement: 7.05%
+  Gen 150 | Best: 785.8744 | Avg: 785.9360 | Improvement: 7.05%
+--------------------------------------------------
+  Final best cost  : 785.8744
+  Total improvement: 7.05%
+==================================================
+
+  Original : 845.4455
+  Best     : 785.8744
+  Gain     : 7.05%
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\hybrid_optimizer.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+=======================================================
+  HYBRID OPTIMIZER  (GA → SA)
+=======================================================
+  Circuit      : s1196
+  Gates        : 547
+  Original cost: 845.4455
+=======================================================
+
+[Phase 1] Running Genetic Algorithm...
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 40
+  Generations : 100
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.2628 | Avg: 843.5732 | Improvement: 0.49%
+  Gen  11 | Best: 836.5924 | Avg: 838.2143 | Improvement: 1.05%
+  Gen  21 | Best: 830.5748 | Avg: 832.4731 | Improvement: 1.76%
+  Gen  31 | Best: 826.2765 | Avg: 827.1577 | Improvement: 2.27%
+  Gen  41 | Best: 822.8379 | Avg: 824.6281 | Improvement: 2.67%
+  Gen  51 | Best: 817.6800 | Avg: 820.0104 | Improvement: 3.28%
+  Gen  61 | Best: 809.9433 | Avg: 812.0924 | Improvement: 4.20%
+  Gen  71 | Best: 803.9260 | Avg: 806.2133 | Improvement: 4.91%
+  Gen  81 | Best: 798.7683 | Avg: 800.7239 | Improvement: 5.52%
+  Gen  91 | Best: 793.6107 | Avg: 795.8979 | Improvement: 6.13%
+  Gen 100 | Best: 789.3128 | Avg: 790.1508 | Improvement: 6.64%
+--------------------------------------------------
+  Final best cost  : 789.3128
+  Total improvement: 6.64%
+==================================================
+
+[Phase 1] GA complete.
+  GA best cost : 789.3128
+  GA improvement: 6.64%
+
+[Phase 2] Running Simulated Annealing on GA's best result...
+
+==================================================
+  SIMULATED ANNEALING  (correct mutations)
+==================================================
+  Circuit     : s1196_ga
+  Gates       : 483
+  Start cost  : 789.3128
+  Validate    : True
+--------------------------------------------------
+  Iterations  : 1220
+  Best cost   : 784.7584
+  Improvement : 0.58%
+==================================================
+
+=======================================================
+  HYBRID OPTIMIZATION COMPLETE
+=======================================================
+  Original cost     : 845.4455
+  After GA          : 789.3128  (6.64% better)
+  After SA refinement: 784.7584  (7.18% better)
+  Total improvement : 7.18%
+=======================================================
+
+FINAL REPORT:
+  circuit_name              : s1196
+  gate_count                : 547
+  original_cost             : 845.4455
+  ga_cost                   : 789.3128
+  sa_cost                   : 784.7584
+  best_cost                 : 784.7584
+  ga_improvement            : 6.64
+  sa_improvement            : 7.18
+  total_improvement         : 7.18
+  ga_generations            : 100
+  ga_population             : 40
+  sa_initial_temp           : 50.0
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>
+
+PS C:\Users\Kashish\OneDrive\Desktop\vlsi> python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 50
+  Generations : 130
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.2628 | Avg: 843.6164 | Improvement: 0.49%
+  Gen  11 | Best: 836.5924 | Avg: 838.6631 | Improvement: 1.05%
+  Gen  21 | Best: 830.5748 | Avg: 832.0265 | Improvement: 1.76%
+  Gen  31 | Best: 825.4169 | Avg: 826.9029 | Improvement: 2.37%
+  Gen  41 | Best: 821.9783 | Avg: 822.9485 | Improvement: 2.78%
+  Gen  51 | Best: 816.8204 | Avg: 817.7832 | Improvement: 3.39%
+  Gen  61 | Best: 811.6626 | Avg: 813.8438 | Improvement: 4.00%
+  Gen  71 | Best: 806.5049 | Avg: 807.3645 | Improvement: 4.61%
+  Gen  81 | Best: 797.9087 | Avg: 799.4560 | Improvement: 5.62%
+  Gen  91 | Best: 792.7511 | Avg: 793.6943 | Improvement: 6.23%
+  Gen 101 | Best: 790.1723 | Avg: 790.8410 | Improvement: 6.54%
+  Gen 111 | Best: 786.7340 | Avg: 787.2056 | Improvement: 6.94%
+  Gen 121 | Best: 785.8744 | Avg: 785.8990 | Improvement: 7.05%
+  Gen 130 | Best: 785.8744 | Avg: 785.9237 | Improvement: 7.05%
+--------------------------------------------------
+  Final best cost  : 785.8744
+  Total improvement: 7.05%
+==================================================
+
+  Original : 845.4455
+  Best     : 785.8744
+  Gain     : 7.05%
+PS C:\Users\Kashish\OneDrive\Desktop\vlsi>
+
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\hybrid_optimizer.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+=======================================================
+  HYBRID OPTIMIZER  (GA → SA)
+=======================================================
+  Circuit      : s1196
+  Gates        : 547
+  Original cost: 845.4455
+=======================================================
+
+[Phase 1] Running Genetic Algorithm...
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 30
+  Generations : 130
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.2628 | Avg: 843.4379 | Improvement: 0.49%
+  Gen  11 | Best: 837.4521 | Avg: 838.4358 | Improvement: 0.95%
+  Gen  21 | Best: 830.5748 | Avg: 831.1193 | Improvement: 1.76%
+  Gen  31 | Best: 822.8379 | Avg: 824.7864 | Improvement: 2.67%
+  Gen  41 | Best: 816.8204 | Avg: 817.3610 | Improvement: 3.39%
+  Gen  51 | Best: 814.2415 | Avg: 815.3590 | Improvement: 3.69%
+  Gen  61 | Best: 809.9433 | Avg: 810.4305 | Improvement: 4.20%
+  Gen  71 | Best: 803.0664 | Avg: 804.8677 | Improvement: 5.01%
+  Gen  81 | Best: 797.0491 | Avg: 798.4531 | Improvement: 5.72%
+  Gen  91 | Best: 792.7511 | Avg: 795.3299 | Improvement: 6.23%
+  Gen 101 | Best: 790.1723 | Avg: 791.2534 | Improvement: 6.54%
+  Gen 111 | Best: 787.5936 | Avg: 788.3347 | Improvement: 6.84%
+  Gen 121 | Best: 785.8744 | Avg: 785.9565 | Improvement: 7.05%
+  Gen 130 | Best: 785.8744 | Avg: 785.9976 | Improvement: 7.05%
+--------------------------------------------------
+  Final best cost  : 785.8744
+  Total improvement: 7.05%
+==================================================
+
+[Phase 1] GA complete.
+  GA best cost : 785.8744
+  GA improvement: 7.05%
+
+[Phase 2] Running Simulated Annealing on GA's best result...
+
+==================================================
+  SIMULATED ANNEALING  (correct mutations)
+==================================================
+  Circuit     : s1196_ga
+  Gates       : 479
+  Start cost  : 785.8744
+  Validate    : True
+--------------------------------------------------
+  Iterations  : 1220
+  Best cost   : 785.8744
+  Improvement : 0.0%
+==================================================
+
+=======================================================
+  HYBRID OPTIMIZATION COMPLETE
+=======================================================
+  Original cost     : 845.4455
+  After GA          : 785.8744  (7.05% better)
+  After SA refinement: 785.8744  (7.05% better)
+  Total improvement : 7.05%
+=======================================================
+
+FINAL REPORT:
+  circuit_name              : s1196
+  gate_count                : 547
+  original_cost             : 845.4455
+  ga_cost                   : 785.8744
+  sa_cost                   : 785.8744
+  best_cost                 : 785.8744
+  ga_improvement            : 7.05
+  sa_improvement            : 7.05
+  total_improvement         : 7.05
+  ga_generations            : 130
+  ga_population             : 30
+  sa_initial_temp           : 50.0
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>
+
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>  python .\optimizer\hybrid_optimizer.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+=======================================================
+  HYBRID OPTIMIZER  (GA → SA)
+=======================================================
+  Circuit      : s1196
+  Gates        : 547
+  Original cost: 845.4455
+=======================================================
+
+[Phase 1] Running Genetic Algorithm...
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 30
+  Generations : 100
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.2628 | Avg: 843.6509 | Improvement: 0.49%
+  Gen  11 | Best: 837.4521 | Avg: 838.1112 | Improvement: 0.95%
+  Gen  21 | Best: 833.1538 | Avg: 833.7842 | Improvement: 1.45%
+  Gen  31 | Best: 825.4169 | Avg: 826.6490 | Improvement: 2.37%
+  Gen  41 | Best: 820.2590 | Avg: 821.7452 | Improvement: 2.98%
+  Gen  51 | Best: 812.5222 | Avg: 813.8977 | Improvement: 3.89%
+  Gen  61 | Best: 804.7856 | Avg: 807.2336 | Improvement: 4.81%
+  Gen  71 | Best: 797.9087 | Avg: 800.2010 | Improvement: 5.62%
+  Gen  81 | Best: 794.4703 | Avg: 796.0462 | Improvement: 6.03%
+  Gen  91 | Best: 790.1723 | Avg: 790.9994 | Improvement: 6.54%
+  Gen 100 | Best: 787.5936 | Avg: 788.4656 | Improvement: 6.84%
+--------------------------------------------------
+  Final best cost  : 787.5936
+  Total improvement: 6.84%
+==================================================
+
+[Phase 1] GA complete.
+  GA best cost : 787.5936
+  GA improvement: 6.84%
+
+[Phase 2] Running Simulated Annealing on GA's best result...
+
+==================================================
+  SIMULATED ANNEALING  (correct mutations)
+==================================================
+  Circuit     : s1196_ga
+  Gates       : 481
+  Start cost  : 787.5936
+  Validate    : True
+--------------------------------------------------
+  Iterations  : 1220
+  Best cost   : 785.8744
+  Improvement : 0.22%
+==================================================
+
+=======================================================
+  HYBRID OPTIMIZATION COMPLETE
+=======================================================
+  Original cost     : 845.4455
+  After GA          : 787.5936  (6.84% better)
+  After SA refinement: 785.8744  (7.05% better)
+  Total improvement : 7.05%
+=======================================================
+
+FINAL REPORT:
+  circuit_name              : s1196
+  gate_count                : 547
+  original_cost             : 845.4455
+  ga_cost                   : 787.5936
+  sa_cost                   : 785.8744
+  best_cost                 : 785.8744
+  ga_improvement            : 6.84
+  sa_improvement            : 7.05
+  total_improvement         : 7.05
+  ga_generations            : 100
+  ga_population             : 30
+  sa_initial_temp           : 50.0
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>
+
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\hybrid_optimizer.py
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+
+=======================================================
+  HYBRID OPTIMIZER  (GA → SA)
+=======================================================
+  Circuit      : s1196
+  Gates        : 547
+  Original cost: 845.4455
+=======================================================
+
+[Phase 1] Running Genetic Algorithm...
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s1196
+  Gates       : 547
+  Population  : 30
+  Generations : 80
+  Start cost  : 845.4455
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 841.2628 | Avg: 843.4798 | Improvement: 0.49%
+  Gen  11 | Best: 835.7328 | Avg: 837.4808 | Improvement: 1.15%
+  Gen  21 | Best: 832.2941 | Avg: 833.0105 | Improvement: 1.56%
+  Gen  31 | Best: 827.1362 | Avg: 829.3999 | Improvement: 2.17%
+  Gen  41 | Best: 821.1186 | Avg: 823.9841 | Improvement: 2.88%
+  Gen  51 | Best: 815.1011 | Avg: 817.1180 | Improvement: 3.59%
+  Gen  61 | Best: 809.9433 | Avg: 811.7541 | Improvement: 4.20%
+  Gen  71 | Best: 801.3472 | Avg: 803.6968 | Improvement: 5.22%
+  Gen  80 | Best: 796.1895 | Avg: 797.7214 | Improvement: 5.83%
+--------------------------------------------------
+  Final best cost  : 796.1895
+  Total improvement: 5.83%
+==================================================
+
+[Phase 1] GA complete.
+  GA best cost : 796.1895
+  GA improvement: 5.83%
+
+[Phase 2] Running Simulated Annealing on GA's best result...
+
+==================================================
+  SIMULATED ANNEALING  (correct mutations)
+==================================================
+  Circuit     : s1196_ga
+  Gates       : 491
+  Start cost  : 796.1895
+  Validate    : True
+--------------------------------------------------
+  Iterations  : 1250
+  Best cost   : 785.1304
+  Improvement : 1.39%
+==================================================
+
+=======================================================
+  HYBRID OPTIMIZATION COMPLETE
+=======================================================
+  Original cost     : 845.4455
+  After GA          : 796.1895  (5.83% better)
+  After SA refinement: 785.1304  (7.13% better)
+  Total improvement : 7.13%
+=======================================================
+
+FINAL REPORT:
+  circuit_name              : s1196
+  gate_count                : 547
+  original_cost             : 845.4455
+  ga_cost                   : 796.1895
+  sa_cost                   : 785.1304
+  best_cost                 : 785.1304
+  ga_improvement            : 5.83
+  sa_improvement            : 7.13
+  total_improvement         : 7.13
+  ga_generations            : 80
+  ga_population             : 30
+  sa_initial_temp           : 60.0
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------- S5378 -------------------------------
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\genetic_algorithm.py
+
+[Pipeline] Loading circuit: s5378
+[Pipeline] File: data/benchmarks/s5378.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 3113.2758
+
+==================================================
+  GENETIC ALGORITHM  (correct mutations)
+==================================================
+  Circuit     : s5378
+  Gates       : 2574
+  Population  : 30
+  Generations : 130
+  Start cost  : 3113.2758
+  Validate    : True
+--------------------------------------------------
+  Gen   1 | Best: 3109.8359 | Avg: 3111.7913 | Improvement: 0.11%
+  Gen  11 | Best: 3104.3041 | Avg: 3106.2787 | Improvement: 0.29%
+  Gen  21 | Best: 3098.8102 | Avg: 3101.0335 | Improvement: 0.46%
+  Gen  31 | Best: 3092.4185 | Avg: 3094.2085 | Improvement: 0.67%
+  Gen  41 | Best: 3085.9747 | Avg: 3088.8062 | Improvement: 0.88%
+  Gen  51 | Best: 3081.2768 | Avg: 3083.1389 | Improvement: 1.03%
+  Gen  61 | Best: 3076.2330 | Avg: 3078.0797 | Improvement: 1.19%
+  Gen  71 | Best: 3072.2531 | Avg: 3074.5488 | Improvement: 1.32%
+  Gen  81 | Best: 3066.3493 | Avg: 3068.6868 | Improvement: 1.51%
+  Gen  91 | Best: 3061.6255 | Avg: 3062.5915 | Improvement: 1.66%
+  Gen 101 | Best: 3055.3497 | Avg: 3057.4540 | Improvement: 1.86%
+  Gen 111 | Best: 3051.1398 | Avg: 3053.8651 | Improvement: 2.00%
+  Gen 121 | Best: 3046.8399 | Avg: 3049.7790 | Improvement: 2.13%
+  Gen 130 | Best: 3044.0401 | Avg: 3046.6425 | Improvement: 2.22%
+--------------------------------------------------
+  Final best cost  : 3044.0401
+  Total improvement: 2.22%
+==================================================
+
+  Original : 3113.2758
+  Best     : 3044.0401
+  Gain     : 2.22%
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> 

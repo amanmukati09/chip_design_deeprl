@@ -171,10 +171,10 @@ if __name__ == "__main__":
 
     best_gates, best_cost, report = hybrid_optimize(
         circuit,
-        ga_population  = 20,
-        ga_generations = 50,
-        sa_initial_temp= 50.0,
-        sa_cooling     = 0.95,
+        ga_population  = 30,
+        ga_generations = 90,
+        sa_initial_temp= 70.0,
+        sa_cooling     = 0.97,
         verbose        = True
     )
 

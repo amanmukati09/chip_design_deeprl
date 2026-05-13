@@ -535,19 +535,18 @@ def gnn_simulated_annealing(circuit,
 
     return best_gates, final_cost, report
 
-
 if __name__ == "__main__":
     sys.path.append(os.path.dirname(os.path.dirname(__file__)))
     from core.pipeline import load_circuit
     from optimizer.simulated_annealing import simulated_annealing
 
     predictor = GNNPredictor()
-    circuit, _ = load_circuit("data/benchmarks/s1196.bench")
+    circuit, _ = load_circuit("data/benchmarks/s5378.v")
 
     print("Standard SA baseline...")
     t0 = time.perf_counter()
     _, sa_cost, _ = simulated_annealing(
-        circuit, initial_temp=50.0, cooling_rate=0.95,
+        circuit, initial_temp=60.0, cooling_rate=0.95,
         min_temp=0.1, iterations_per_temp=10,
         validate=True, verbose=False
     )
