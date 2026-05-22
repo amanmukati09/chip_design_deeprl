@@ -6,7 +6,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from optimizer.safe_genetic_algorithm import safe_genetic_algorithm
-from optimizer.safe_simulated_annealing import safe_simulated_annealing
+from legacy_codes.safe_simulated_annealing import safe_simulated_annealing
 
 def safe_hybrid_optimizer(circuit, verbose=True):
     """

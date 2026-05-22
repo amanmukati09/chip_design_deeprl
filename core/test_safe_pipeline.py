@@ -5,7 +5,7 @@ import os
 # Go up one level from 'core' to the project root so Python can see the 'optimizer' folder
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from optimizer.safe_simulated_annealing import safe_simulated_annealing
+from legacy_codes.safe_simulated_annealing import safe_simulated_annealing
 from optimizer.bench_writer import write_bench
 
 # Dummy Circuit Class to simulate your environment for the test

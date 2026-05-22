@@ -1,0 +1,134 @@
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\gnn_optimizer.py
+[Predictor] Model loaded from ml/models/gnn_trained.pt
+[Predictor] Cost stats loaded for 31 gate-count tiers
+
+[Pipeline] Loading circuit: s27
+[Pipeline] File: data/benchmarks/s27.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 24.0631
+Standard SA baseline...
+GNN-SA...
+=======================================================
+  GNN-ACCELERATED SA  (correct mutations)
+=======================================================
+  Circuit     : s27
+  Gates       : 13
+  Start cost  : 24.0631
+  Validate    : True
+  Verify every: 20 accepted moves
+-------------------------------------------------------
+  Iterations  : 1220
+  Accepted    : 0
+  GNN calls   : 1203  (99.8%)
+  Real calls  : 2
+  Final cost  : 24.0631
+  Improvement : 0.0%
+=======================================================
+
+  Original : 24.0631
+  SA       : 23.2133  (3.53%)  5.51s
+  GNN-SA   : 24.0631  (0.0%)  12.97s
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\gnn_optimizer.py
+[Predictor] Model loaded from ml/models/gnn_trained.pt
+[Predictor] Cost stats loaded for 31 gate-count tiers
+
+[Pipeline] Loading circuit: s1196
+[Pipeline] File: data/benchmarks/s1196.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 845.4455
+Standard SA baseline...
+GNN-SA...
+=======================================================
+  GNN-ACCELERATED SA  (correct mutations)
+=======================================================
+  Circuit     : s1196
+  Gates       : 547
+  Start cost  : 845.4455
+  Validate    : True
+  Verify every: 20 accepted moves
+-------------------------------------------------------
+  Iterations  : 1220
+  Accepted    : 420
+  GNN calls   : 1208  (98.1%)
+  Real calls  : 23
+  Final cost  : 785.1304
+  Improvement : 7.13%
+=======================================================
+
+  Original : 845.4455
+  SA       : 787.3624  (6.87%)  458.61s
+  GNN-SA   : 785.1304  (7.13%)  380.7s
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\gnn_optimizer.py
+[Predictor] Model loaded from ml/models/gnn_trained.pt
+[Predictor] Cost stats loaded for 31 gate-count tiers
+
+[Pipeline] Loading circuit: s1488
+[Pipeline] File: data/benchmarks/s1488.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 1153.9228
+Standard SA baseline...
+GNN-SA...
+=======================================================
+  GNN-ACCELERATED SA  (correct mutations)
+=======================================================
+  Circuit     : s1488
+  Gates       : 659
+  Start cost  : 1153.9228
+  Validate    : True
+  Verify every: 20 accepted moves
+-------------------------------------------------------
+  Iterations  : 1220
+  Accepted    : 340
+  GNN calls   : 1197  (98.4%)
+  Real calls  : 19
+  Final cost  : 1048.7725
+  Improvement : 9.11%
+=======================================================
+
+  Original : 1153.9228
+  SA       : 1048.7725  (9.11%)  26.55s
+  GNN-SA   : 1048.7725  (9.11%)  50.38s
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI> python .\optimizer\gnn_optimizer.py
+[Predictor] Model loaded from ml/models/gnn_trained.pt
+[Predictor] Cost stats loaded for 31 gate-count tiers
+
+[Pipeline] Loading circuit: s953
+[Pipeline] File: data/benchmarks/s953.bench
+[Pipeline] Step 1/4 — Parsing netlist...
+[Pipeline] Step 2/4 — Building graph...
+[Pipeline] Step 3/4 — Creating circuit object...
+[Pipeline] Step 4/4 — Extracting features...
+[Pipeline] Done. Cost: 657.8402
+Standard SA baseline...
+GNN-SA...
+=======================================================
+  GNN-ACCELERATED SA  (correct mutations)
+=======================================================
+  Circuit     : s953
+  Gates       : 424
+  Start cost  : 657.8402
+  Validate    : True
+  Verify every: 20 accepted moves
+-------------------------------------------------------
+  Iterations  : 1220
+  Accepted    : 820
+  GNN calls   : 1206  (96.6%)
+  Real calls  : 43
+  Final cost  : 653.8633
+  Improvement : 0.6%
+=======================================================
+
+  Original : 657.8402
+  SA       : 655.1073  (0.42%)  53.38s
+  GNN-SA   : 653.8633  (0.6%)  77.19s
+PS C:\Users\Kashish\OneDrive\Desktop\VLSI>
+

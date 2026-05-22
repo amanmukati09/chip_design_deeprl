@@ -7,7 +7,7 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from optimizer.cost_function import compute_pac_cost
-from optimizer.safe_simulated_annealing import apply_safe_mutation
+from legacy_codes.safe_simulated_annealing import apply_safe_mutation
 
 # ─────────────────────────────────────────────────────────────
 # SAFE GENETIC ALGORITHM CORE

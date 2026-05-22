@@ -2,9 +2,9 @@
   AI-DRIVEN CIRCUIT OPTIMIZATION REPORT
 ============================================================
   Circuit    : s1196
-  Optimizer  : SingleMutation-Test
-  Time       : 0.428s
-  Generated  : 2026-05-02 01:18:26
+  Optimizer  : hybrid
+  Time       : 840.664s
+  Generated  : 2026-05-21 23:08:53
 ============================================================
 
   FUNCTIONAL CORRECTNESS
@@ -16,19 +16,19 @@
 ------------------------------------------------------------
   Metric                   Original    Optimized     Change
   -------------------- ------------ ------------ ----------
-  Power                   1298.2500    1296.5500 ↓    0.13%
-  Area                     814.4250     813.0450 ↓    0.17%
-  WireLength              1027.0000    1026.0000 ↓    0.10%
-  TOTAL COST               845.4455     844.2138 ↓    0.15%
+  Power                   1298.2500    1221.6500 ↓    5.90%
+  Area                     814.4250     742.0350 ↓    8.89%
+  WireLength              1027.0000     959.0000 ↓    6.62%
+  TOTAL COST               845.4455     785.8744 ↓    7.05%
 
   Weights    : α=0.4 (Power)  β=0.4 (Area)  γ=0.2 (Wire)
-  Net improvement : 0.1457%
+  Net improvement : 7.0461%
 
   GATE COUNT
 ------------------------------------------------------------
   Original   : 547
-  Optimized  : 546
-  Net change : -1 gates
+  Optimized  : 479
+  Net change : -68 gates
 
   GATE TYPE BREAKDOWN
 ------------------------------------------------------------
@@ -37,17 +37,57 @@
   AND               118        117       -1
   DFF                18         18       +0
   NAND              119        120       +1
-  NOR                50         50       +0
-  NOT               141        140       -1
-  OR                101        101       +0
+  NOR                50         52       +2
+  NOT               141         73      -68
+  OR                101         99       -2
 
   GATE-LEVEL DIFF
 ------------------------------------------------------------
-  Removed (1 gates):
-    - G357 = AND(G265, G232)
+  Removed (68 gates):
+    - G107 = NOT(G456)
+    - G124 = NOT(G206)
+    - G145 = OR(G426, G427)
+    - G153 = NOT(G522)
+    - G165 = NOT(G529)
+    - G170 = NOT(G171)
+    - G173 = NOT(G495)
+    - G174 = NOT(G496)
+    - G228 = NOT(G524)
+    - G265 = NOT(G50)
+    - G272 = NOT(G271)
+    - G275 = NOT(G274)
+    - G299 = NOT(I352)
+    - G303 = NOT(I624)
+    - G332 = NOT(I276)
+    - G333 = NOT(I218)
+    - G334 = NOT(I156)
+    - G335 = NOT(I371)
+    - G336 = NOT(I631)
+    - G347 = NOT(I287)
+    ... and 48 more
 
-  Changed (1 gates):
-    ~ G177: NOT(G357) → NAND(G265, G232)
+  Changed (52 gates):
+    ~ G108: OR(G346, G347) → OR(G346, G135)
+    ~ G115: OR(G457, G458, G459) → OR(G457, G209, G198)
+    ~ G133: OR(G434, G435) → OR(G434, G135)
+    ~ G142: OR(G403, G404) → OR(G176, G218)
+    ~ G146: OR(G336, G170) → OR(G188, G172)
+    ~ G149: NOT(I529) → NOT(G206)
+    ~ G150: OR(G303, G304) → OR(G120, G304)
+    ~ G154: NOR(G12, G488) → NOR(G12, G171)
+    ~ G175: NOR(G86, G500) → NOR(G86, G495)
+    ~ G176: NOR(G4, G494) → NOR(G4, G495)
+    ~ G177: NOT(G357) → NAND(G49, G232)
+    ~ G210: NAND(G520, G272) → NAND(G520, G309)
+    ~ G213: NAND(G64, G275) → NAND(G64, G236)
+    ~ G232: NAND(G536, G164) → NAND(G130, G164)
+    ~ G235: NAND(G6, G536) → NAND(G6, G130)
+    ~ G243: NAND(G368, G275, G34) → NAND(G368, G236, G34)
+    ~ G267: NAND(G536, G84) → NAND(G130, G84)
+    ~ G278: NAND(G332, G333) → NAND(G238, G528)
+    ~ G284: OR(G528, G272, G281) → OR(G528, G309, G281)
+    ~ G285: OR(G5, G479) → OR(G5, G491)
+    ... and 32 more
 
   VERIFICATION
 ------------------------------------------------------------
