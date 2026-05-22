@@ -1,16 +1,16 @@
+#----------------------------------------------------------------------------------
+
 # optimizer/gnn_optimizer.py
 # GNN-accelerated SA — pattern-based correct mutations only.
 # GNN predicts cost fast; real cost function verifies periodically.
 # All mutations validated via truth-table equivalence check.
 
 import random
+import math
 import copy
 import sys
 import os
 import time
-import math
-import networkx as nx
-
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -25,66 +25,38 @@ from ml.data_collector import gates_to_graph_data
 
 GATE_TYPE_MAP = {
     'NOT': 0, 'BUFF': 1, 'AND': 2, 'OR': 3,
-    'NAND': 4, 'NOR': 5, 'XOR': 6, 'XNOR': 7, 'DFF': 8,
-    'INPUT': 9, 'UNKNOWN': 10
+    'NAND': 4, 'NOR': 5, 'XOR': 6, 'XNOR': 7, 'DFF': 8
 }
 
-def gates_to_gnn_input(gates, inputs, circuit_gate_count):
-    """
-    Builds 5-feature GNN input matching training format:
-    [type_id, fan_in_norm, fan_out_norm, depth_norm, relative_size]
-    """
-    from core.graph_builder import build_graph
-    
-    # Need outputs list — use gates that nothing else consumes
-    consumed = set()
-    for _, (_, gate_inputs) in gates.items():
-        consumed.update(gate_inputs)
-    outputs = [sig for sig in gates if sig not in consumed]
-    
-    G        = build_graph(inputs, outputs, gates)
-    nodes    = list(G.nodes())
-    node_idx = {n: i for i, n in enumerate(nodes)}
-    norm     = max(1.0, math.sqrt(circuit_gate_count))
-    rel_size = round(circuit_gate_count / 5000.0, 4)
 
-    # Compute depth via topological sort
-    depth_map = {}
-    try:
-        for node in nx.topological_sort(G):
-            preds = list(G.predecessors(node))
-            depth_map[node] = 0 if not preds else 1 + max(
-                depth_map.get(p, 0) for p in preds)
-    except Exception:
-        depth_map = {n: 0 for n in nodes}
+# def gates_to_gnn_input(gates, inputs):
+#     """Fast GNN feature extraction — no NetworkX needed."""
+#     all_nodes = list(inputs) + list(gates.keys())
+#     node_idx  = {n: i for i, n in enumerate(all_nodes)}
 
-    depth_norm = max(1.0, math.log2(circuit_gate_count))
+#     fan_out = {n: 0 for n in all_nodes}
+#     for _, (_, gate_inputs) in gates.items():
+#         for inp in gate_inputs:
+#             if inp in fan_out:
+#                 fan_out[inp] += 1
 
-    node_features = []
-    edge_index    = []
+#     node_features = []
+#     edge_index    = []
 
-    for node in nodes:
-        data  = G.nodes[node]
-        ntype = data.get('node_type', 'gate')
-        gtype = data.get('gate_type', 'UNKNOWN')
+#     for node in all_nodes:
+#         if node in gates:
+#             gate_type, gate_inputs = gates[node]
+#             type_id = GATE_TYPE_MAP.get(gate_type, 1)
+#             fan_in  = len(gate_inputs)
+#             for inp in gate_inputs:
+#                 if inp in node_idx:
+#                     edge_index.append([node_idx[inp], node_idx[node]])
+#         else:
+#             type_id = 0
+#             fan_in  = 0
+#         node_features.append([type_id, fan_in, fan_out.get(node, 0)])
 
-        if ntype == 'input':
-            type_id = 9   # INPUT
-        else:
-            type_id = GATE_TYPE_MAP.get(gtype, 10)
-
-        fan_in  = round(G.in_degree(node)  / norm, 4)
-        fan_out = round(G.out_degree(node) / norm, 4)
-        depth   = round(depth_map.get(node, 0) / depth_norm, 4)
-
-        node_features.append([type_id, fan_in, fan_out, depth, rel_size])
-
-    for src, dst in G.edges():
-        if src in node_idx and dst in node_idx:
-            edge_index.append([node_idx[src], node_idx[dst]])
-
-    return torch.tensor(node_features, dtype=torch.float32), edge_index
-
+#     return torch.tensor(node_features, dtype=torch.float32), edge_index
 
 
 def gnn_simulated_annealing(circuit,
@@ -140,9 +112,22 @@ def gnn_simulated_annealing(circuit,
             if new_gates is None:
                 continue
 
-            node_feat, edge_index = gates_to_gnn_input(new_gates, circuit.inputs, circuit.gate_count)
-            new_cost = predictor.predict(
-            node_feat, edge_index, gate_count=circuit.gate_count)
+            # GNN fast cost estimate
+            # node_feat, edge_index = gates_to_gnn_input(
+            #     new_gates, circuit.inputs
+            # )
+
+            node_feat, edge_index = gates_to_graph_data(
+    new_gates,
+    circuit.inputs,
+    circuit.outputs,
+    circuit.gate_count)
+
+            node_feat = torch.tensor(
+                node_feat,
+                dtype=torch.float32
+            )
+
             
             new_cost   = predictor.predict(node_feat, edge_index, gate_count=circuit.gate_count)
             gnn_calls += 1
@@ -229,3 +214,4 @@ if __name__ == "__main__":
     print(f"  GNN-SA   : {gnn_cost}  "
           f"({round((circuit.cost-gnn_cost)/circuit.cost*100,2)}%)"
           f"  {round(gnn_time,2)}s")
+    
