@@ -144,28 +144,9 @@ def gnn_simulated_annealing(circuit,
             if new_gates is None:
                 continue
 
-
-
             node_feat, edge_index = gates_to_gnn_input(new_gates, circuit.inputs, circuit.gate_count)
             new_cost = predictor.predict(
             node_feat, edge_index, gate_count=circuit.gate_count)
-
-            # GNN fast cost estimate
-            # node_feat, edge_index = gates_to_gnn_input(
-            #     new_gates, circuit.inputs
-            # )
-
-    #         node_feat, edge_index = gates_to_graph_data(
-    # new_gates,
-    # circuit.inputs,
-    # circuit.outputs,
-    # circuit.gate_count)
-
-    #         node_feat = torch.tensor(
-    #             node_feat,
-    #             dtype=torch.float32
-    #         )
-
             
             new_cost   = predictor.predict(node_feat, edge_index, gate_count=circuit.gate_count)
             gnn_calls += 1
@@ -225,7 +206,7 @@ if __name__ == "__main__":
     from optimizer.simulated_annealing import simulated_annealing
 
     predictor = GNNPredictor()
-    circuit, _ = load_circuit("data/benchmarks/s1488.bench")
+    circuit, _ = load_circuit("data/benchmarks/s1196.bench")
 
     print("Standard SA baseline...")
     t0 = time.perf_counter()
