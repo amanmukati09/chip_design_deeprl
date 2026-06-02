@@ -206,7 +206,7 @@ if __name__ == "__main__":
     from optimizer.simulated_annealing import simulated_annealing
 
     predictor = GNNPredictor()
-    circuit, _ = load_circuit("data/benchmarks/s1196.bench")
+    circuit, _ = load_circuit("data/benchmarks/c432.v")
 
     print("Standard SA baseline...")
     t0 = time.perf_counter()

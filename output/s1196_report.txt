@@ -3,8 +3,8 @@
 ============================================================
   Circuit    : s1196
   Optimizer  : hybrid
-  Time       : 840.664s
-  Generated  : 2026-05-21 23:08:53
+  Time       : 480.635s
+  Generated  : 2026-06-02 22:28:50
 ============================================================
 
   FUNCTIONAL CORRECTNESS
@@ -16,78 +16,89 @@
 ------------------------------------------------------------
   Metric                   Original    Optimized     Change
   -------------------- ------------ ------------ ----------
-  Power                   1298.2500    1221.6500 ↓    5.90%
-  Area                     814.4250     742.0350 ↓    8.89%
-  WireLength              1027.0000     959.0000 ↓    6.62%
-  TOTAL COST               845.4455     785.8744 ↓    7.05%
+  Power                   1298.2500    1221.2000 ↓    5.93%
+  Area                     814.4250     741.3300 ↓    8.98%
+  WireLength              1027.0000     954.0000 ↓    7.11%
+  TOTAL COST               845.4455     785.4128 ↓    7.10%
 
   Weights    : α=0.4 (Power)  β=0.4 (Area)  γ=0.2 (Wire)
-  Net improvement : 7.0461%
+  Net improvement : 7.1007%
 
   GATE COUNT
 ------------------------------------------------------------
   Original   : 547
-  Optimized  : 479
-  Net change : -68 gates
+  Optimized  : 476
+  Net change : -71 gates
 
   GATE TYPE BREAKDOWN
 ------------------------------------------------------------
   Type         Original  Optimized   Change
   ---------- ---------- ---------- --------
-  AND               118        117       -1
+  AND               118        124       +6
   DFF                18         18       +0
-  NAND              119        120       +1
-  NOR                50         52       +2
-  NOT               141         73      -68
-  OR                101         99       -2
+  NAND              119        112       -7
+  NOR                50         49       -1
+  NOT               141         72      -69
+  OR                101        101       +0
 
   GATE-LEVEL DIFF
 ------------------------------------------------------------
-  Removed (68 gates):
+  Removed (80 gates):
     - G107 = NOT(G456)
     - G124 = NOT(G206)
     - G145 = OR(G426, G427)
+    - G149 = NOT(I529)
     - G153 = NOT(G522)
     - G165 = NOT(G529)
     - G170 = NOT(G171)
     - G173 = NOT(G495)
     - G174 = NOT(G496)
+    - G194 = NOR(G281, G271)
+    - G212 = NOT(G213)
+    - G221 = NOT(G222)
     - G228 = NOT(G524)
+    - G231 = NOT(G232)
+    - G236 = NOT(G274)
     - G265 = NOT(G50)
-    - G272 = NOT(G271)
-    - G275 = NOT(G274)
     - G299 = NOT(I352)
     - G303 = NOT(I624)
+    - G309 = NOT(I280)
     - G332 = NOT(I276)
-    - G333 = NOT(I218)
-    - G334 = NOT(I156)
-    - G335 = NOT(I371)
-    - G336 = NOT(I631)
-    - G347 = NOT(I287)
-    ... and 48 more
+    ... and 60 more
 
-  Changed (52 gates):
+  Added (9 gates):
+    + _exp_G194 = OR(G281, G271)
+    + _exp_G213 = AND(G275, G64)
+    + _exp_G222 = AND(G533, G10)
+    + _exp_G232 = AND(G130, G164)
+    + _exp_G526 = AND(G1, G2, G141)
+    + _exp_G68 = AND(G302, G528)
+    + _exp_G71 = AND(G8, G10)
+    + _exp_G97 = AND(G2, G5)
+    + _exp_I692 = OR(G426, G427)
+
+  Changed (60 gates):
     ~ G108: OR(G346, G347) → OR(G346, G135)
     ~ G115: OR(G457, G458, G459) → OR(G457, G209, G198)
     ~ G133: OR(G434, G435) → OR(G434, G135)
     ~ G142: OR(G403, G404) → OR(G176, G218)
     ~ G146: OR(G336, G170) → OR(G188, G172)
-    ~ G149: NOT(I529) → NOT(G206)
     ~ G150: OR(G303, G304) → OR(G120, G304)
-    ~ G154: NOR(G12, G488) → NOR(G12, G171)
-    ~ G175: NOR(G86, G500) → NOR(G86, G495)
-    ~ G176: NOR(G4, G494) → NOR(G4, G495)
+    ~ G154: NOR(G12, G488) → NOT(G450)
+    ~ G161: NAND(G316, G72) → NAND(_exp_G71, G316)
+    ~ G168: NAND(G75, G221) → NAND(G75, _exp_G222)
+    ~ G175: NOR(G86, G500) → NOR(G86, G489)
+    ~ G176: NOR(G4, G494) → NOR(G4, G489)
     ~ G177: NOT(G357) → NAND(G49, G232)
-    ~ G210: NAND(G520, G272) → NAND(G520, G309)
-    ~ G213: NAND(G64, G275) → NAND(G64, G236)
-    ~ G232: NAND(G536, G164) → NAND(G130, G164)
-    ~ G235: NAND(G6, G536) → NAND(G6, G130)
-    ~ G243: NAND(G368, G275, G34) → NAND(G368, G236, G34)
-    ~ G267: NAND(G536, G84) → NAND(G130, G84)
-    ~ G278: NAND(G332, G333) → NAND(G238, G528)
-    ~ G284: OR(G528, G272, G281) → OR(G528, G309, G281)
-    ~ G285: OR(G5, G479) → OR(G5, G491)
-    ... and 32 more
+    ~ G185: NAND(G525, G184) → NAND(_exp_G526, G184)
+    ~ G188: NOR(G543, G493) → NOR(G543, G545)
+    ~ G213: NAND(G64, G275) → NOT(_exp_G213)
+    ~ G215: NAND(G135, G55, G212) → NAND(_exp_G213, G135, G55)
+    ~ G222: NAND(G533, G10) → NOT(_exp_G222)
+    ~ G232: NAND(G536, G164) → NOT(_exp_G232)
+    ~ G235: NAND(G6, G536) → NAND(G130, G6)
+    ~ G255: NAND(G309, G2, G529) → NAND(G2, G529, G272)
+    ... and 40 more
 
   VERIFICATION
 ------------------------------------------------------------

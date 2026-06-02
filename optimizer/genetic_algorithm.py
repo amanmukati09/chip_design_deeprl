@@ -401,7 +401,7 @@ if __name__ == "__main__":
     sys.path.append(os.path.dirname(os.path.dirname(__file__)))
     from core.pipeline import load_circuit
 
-    circuit, _ = load_circuit("data/benchmarks/s38417.bench")
+    circuit, _ = load_circuit("data/benchmarks/c432.v")
     best_gates, best_cost, _ = genetic_algorithm(
         circuit, population_size=80, generations=1000,
         validate=True, verbose=True

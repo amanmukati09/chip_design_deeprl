@@ -167,7 +167,7 @@ if __name__ == "__main__":
     from core.pipeline import load_circuit
 
     # Test on s1196 — same circuit GA tested on
-    circuit, _ = load_circuit("data/benchmarks/s1196.bench")
+    circuit, _ = load_circuit("data/benchmarks/c432.v")
 
     best_gates, best_cost, report = hybrid_optimize(
         circuit,
