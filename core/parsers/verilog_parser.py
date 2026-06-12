@@ -205,7 +205,7 @@ if __name__ == "__main__":
 
     test_files = [
         "data/benchmarks/c17.v",
-        "data/benchmarks/s15850.v",
+        "data/benchmarks/sqrt.v",
     ]
 
     for filepath in test_files:

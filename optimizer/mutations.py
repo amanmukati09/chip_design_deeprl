@@ -402,12 +402,12 @@ MUTATION_RULES = [
 _RULES   = [r for r, _ in MUTATION_RULES]
 _WEIGHTS = [w for _, w in MUTATION_RULES]
 
-
 def apply_safe_mutation(inputs: List[str],
                          outputs: List[str],
                          gates: Gates,
                          max_attempts: int = 20,
-                         validate: bool = True) -> Optional[Gates]:
+                         validate: bool = True,
+                         rule_index: int = None) -> Optional[Gates]:
     """
     Applies one randomly selected mutation rule.
     Validates functional equivalence before returning.
@@ -416,7 +416,10 @@ def apply_safe_mutation(inputs: List[str],
     Returns mutated gates dict, or None if nothing found.
     """
     for _ in range(max_attempts):
-        rule_fn = random.choices(_RULES, weights=_WEIGHTS, k=1)[0]
+        if rule_index is not None:
+            rule_fn = _RULES[rule_index % len(_RULES)]
+        else:
+            rule_fn = random.choices(_RULES, weights=_WEIGHTS, k=1)[0]
 
         if rule_fn == mutate_insert_buffer:
             mutated = rule_fn(gates, inputs)

@@ -34,7 +34,7 @@ def parse(filepath: str):
 
 
 if __name__ == "__main__":
-    inputs, outputs, gates, name = parse("data/benchmarks/s1196.bench")
+    inputs, outputs, gates, name = parse("data/benchmarks/hyp.bench")
     print(f"Circuit : {name}")
     print(f"Inputs  : {len(inputs)}")
     print(f"Outputs : {len(outputs)}")
