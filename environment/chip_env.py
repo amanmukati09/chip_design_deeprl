@@ -52,6 +52,8 @@ class ChipEnv(gym.Env):
         self.original_cost = None
         self.current_cost  = None
         self.step_count    = 0
+        self.last_action   = None   # ADD THIS
+
 
     def _get_embedding(self, gates) -> np.ndarray:
         node_feat, edge_index = gates_to_graph_data(
@@ -76,7 +78,6 @@ class ChipEnv(gym.Env):
     def reset(self, seed=None, options=None):
         super().reset(seed=seed)
         from core.pipeline import load_circuit
-
         path            = random.choice(self.circuit_paths)
         self.circuit, _ = load_circuit(path, verbose=False)
 
@@ -84,6 +85,10 @@ class ChipEnv(gym.Env):
         self.original_cost = self.circuit.cost
         self.current_cost  = self.circuit.cost
         self.step_count    = 0
+        self.last_action   = None
+
+        # Scale max_steps per-circuit, matching SA's iteration budget
+        self.max_steps = min(500, max(50, self.circuit.gate_count // 2))
 
         return self._get_embedding(self.current_gates), {}
     
@@ -97,26 +102,38 @@ class ChipEnv(gym.Env):
             rule_index=action, max_attempts=10,
             validate=self.validate
         )
-
         done = self.step_count >= self.max_steps
+        
+        repeat_penalty = -0.005 if action == self.last_action else 0.0
+        self.last_action = action
 
         if new_gates is None:
             obs = self._get_embedding(self.current_gates)
-            # Episode-end reward only
-            reward = ((self.original_cost - self.current_cost)
-                    / self.original_cost) if done else 0.0
+            reward = repeat_penalty - 0.002   # small penalty for invalid too
+
+
+
             return obs, reward, done, False, {}
+        
 
         new_cost           = compute_pac_cost(new_gates, self.circuit.inputs)['total_cost']
+        
+        step_reward = (self.current_cost - new_cost) / self.original_cost
+        
         self.current_gates = new_gates
         self.current_cost  = new_cost
 
         obs = self._get_embedding(self.current_gates)
 
         # Reward only at episode end
-        reward = ((self.original_cost - self.current_cost)
-                / self.original_cost) if done else 0.0
+        reward = step_reward * 0.5 + repeat_penalty
 
+        # Bonus at episode end for total improvement (keeps long-term incentive)
+        if done:
+            total_improvement = (self.original_cost - self.current_cost) / self.original_cost
+            reward += total_improvement * 0.5
+            
+            
         info = {
             'current_cost'   : round(self.current_cost, 4),
             'improvement_pct': round(
