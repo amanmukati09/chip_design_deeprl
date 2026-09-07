@@ -45,7 +45,7 @@ def train():
     print("=" * 60)
 
     predictor = GNNPredictor()
-    agent     = PPOAgent(state_dim=64, n_actions=6, entropy_coef=0.08)
+    agent     = PPOAgent(state_dim=64, n_actions=6, entropy_coef=0.05)
 
     log = []
     global_ep = 0

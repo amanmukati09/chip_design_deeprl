@@ -52,7 +52,6 @@ class ChipEnv(gym.Env):
         self.original_cost = None
         self.current_cost  = None
         self.step_count    = 0
-        self.last_action   = None   # ADD THIS
 
 
     def _get_embedding(self, gates) -> np.ndarray:
@@ -85,7 +84,6 @@ class ChipEnv(gym.Env):
         self.original_cost = self.circuit.cost
         self.current_cost  = self.circuit.cost
         self.step_count    = 0
-        self.last_action   = None
 
         # Scale max_steps per-circuit, matching SA's iteration budget
         self.max_steps = min(500, max(50, self.circuit.gate_count // 2))
@@ -93,7 +91,6 @@ class ChipEnv(gym.Env):
         return self._get_embedding(self.current_gates), {}
     
     def step(self, action: int):
-        
         self.step_count += 1
 
         new_gates = apply_safe_mutation(
@@ -102,43 +99,31 @@ class ChipEnv(gym.Env):
             rule_index=action, max_attempts=10,
             validate=self.validate
         )
+
         done = self.step_count >= self.max_steps
-        
-        repeat_penalty = -0.005 if action == self.last_action else 0.0
-        self.last_action = action
 
         if new_gates is None:
+            # No penalty — just stay in place, episode-end reward decides everything
             obs = self._get_embedding(self.current_gates)
-            reward = repeat_penalty - 0.002   # small penalty for invalid too
-
-
-
+            reward = 0.0
+            if done:
+                reward = (self.original_cost - self.current_cost) / self.original_cost
             return obs, reward, done, False, {}
-        
 
-        new_cost           = compute_pac_cost(new_gates, self.circuit.inputs)['total_cost']
-        
-        step_reward = (self.current_cost - new_cost) / self.original_cost
-        
+        new_cost = compute_pac_cost(new_gates, self.circuit.inputs)['total_cost']
         self.current_gates = new_gates
         self.current_cost  = new_cost
 
         obs = self._get_embedding(self.current_gates)
 
-        # Reward only at episode end
-        reward = step_reward * 0.5 + repeat_penalty
-
-        # Bonus at episode end for total improvement (keeps long-term incentive)
+        reward = 0.0
         if done:
-            total_improvement = (self.original_cost - self.current_cost) / self.original_cost
-            reward += total_improvement * 0.5
-            
-            
+            reward = (self.original_cost - self.current_cost) / self.original_cost
+
         info = {
             'current_cost'   : round(self.current_cost, 4),
             'improvement_pct': round(
-                (self.original_cost - self.current_cost)
-                / self.original_cost * 100, 3)
+                (self.original_cost - self.current_cost) / self.original_cost * 100, 3)
         }
         return obs, reward, done, False, info
 
